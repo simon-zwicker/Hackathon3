@@ -8,17 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		4FBE79E42C47FCA500D2FF5B /* Hackathon3App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE79E32C47FCA500D2FF5B /* Hackathon3App.swift */; };
-		4FBE79E62C47FCA500D2FF5B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE79E52C47FCA500D2FF5B /* ContentView.swift */; };
+		4FBE79E62C47FCA500D2FF5B /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE79E52C47FCA500D2FF5B /* MainScreen.swift */; };
 		4FBE79E82C47FCA600D2FF5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FBE79E72C47FCA600D2FF5B /* Assets.xcassets */; };
 		4FBE79EB2C47FCA600D2FF5B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FBE79EA2C47FCA600D2FF5B /* Preview Assets.xcassets */; };
+		4FBE79F82C47FD6800D2FF5B /* ErrorObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE79F72C47FD6800D2FF5B /* ErrorObj.swift */; };
+		4FBE79FA2C47FD8000D2FF5B /* NetworkEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE79F92C47FD8000D2FF5B /* NetworkEnv.swift */; };
+		4FBE79FC2C47FDAC00D2FF5B /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE79FB2C47FDAC00D2FF5B /* APIEndpoint.swift */; };
+		4FBE79FF2C47FDC600D2FF5B /* Mammut in Frameworks */ = {isa = PBXBuildFile; productRef = 4FBE79FE2C47FDC600D2FF5B /* Mammut */; };
+		4FBE7A022C47FDD300D2FF5B /* SwiftChameleon in Frameworks */ = {isa = PBXBuildFile; productRef = 4FBE7A012C47FDD300D2FF5B /* SwiftChameleon */; };
+		4FBE7A042C47FEB200D2FF5B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE7A032C47FEB200D2FF5B /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4FBE79E02C47FCA500D2FF5B /* Hackathon3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FBE79E32C47FCA500D2FF5B /* Hackathon3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hackathon3App.swift; sourceTree = "<group>"; };
-		4FBE79E52C47FCA500D2FF5B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4FBE79E52C47FCA500D2FF5B /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		4FBE79E72C47FCA600D2FF5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FBE79EA2C47FCA600D2FF5B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4FBE79F72C47FD6800D2FF5B /* ErrorObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorObj.swift; sourceTree = "<group>"; };
+		4FBE79F92C47FD8000D2FF5B /* NetworkEnv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEnv.swift; sourceTree = "<group>"; };
+		4FBE79FB2C47FDAC00D2FF5B /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		4FBE7A032C47FEB200D2FF5B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +36,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FBE79FF2C47FDC600D2FF5B /* Mammut in Frameworks */,
+				4FBE7A022C47FDD300D2FF5B /* SwiftChameleon in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,8 +63,9 @@
 		4FBE79E22C47FCA500D2FF5B /* Hackathon3 */ = {
 			isa = PBXGroup;
 			children = (
-				4FBE79E32C47FCA500D2FF5B /* Hackathon3App.swift */,
-				4FBE79E52C47FCA500D2FF5B /* ContentView.swift */,
+				4FBE79F32C47FD3400D2FF5B /* App */,
+				4FBE79F22C47FD2F00D2FF5B /* Common */,
+				4FBE79F12C47FD2A00D2FF5B /* Resources */,
 				4FBE79E72C47FCA600D2FF5B /* Assets.xcassets */,
 				4FBE79E92C47FCA600D2FF5B /* Preview Content */,
 			);
@@ -65,6 +78,57 @@
 				4FBE79EA2C47FCA600D2FF5B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4FBE79F12C47FD2A00D2FF5B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4FBE79F22C47FD2F00D2FF5B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4FBE79F52C47FD4F00D2FF5B /* Network */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4FBE79F32C47FD3400D2FF5B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4FBE79F42C47FD3800D2FF5B /* Main */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4FBE79F42C47FD3800D2FF5B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4FBE79E32C47FCA500D2FF5B /* Hackathon3App.swift */,
+				4FBE79E52C47FCA500D2FF5B /* MainScreen.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		4FBE79F52C47FD4F00D2FF5B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4FBE79F62C47FD5F00D2FF5B /* Responses */,
+				4FBE79F92C47FD8000D2FF5B /* NetworkEnv.swift */,
+				4FBE79FB2C47FDAC00D2FF5B /* APIEndpoint.swift */,
+				4FBE7A032C47FEB200D2FF5B /* Network.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		4FBE79F62C47FD5F00D2FF5B /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				4FBE79F72C47FD6800D2FF5B /* ErrorObj.swift */,
+			);
+			path = Responses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +147,10 @@
 			dependencies = (
 			);
 			name = Hackathon3;
+			packageProductDependencies = (
+				4FBE79FE2C47FDC600D2FF5B /* Mammut */,
+				4FBE7A012C47FDD300D2FF5B /* SwiftChameleon */,
+			);
 			productName = Hackathon3;
 			productReference = 4FBE79E02C47FCA500D2FF5B /* Hackathon3.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +179,10 @@
 				Base,
 			);
 			mainGroup = 4FBE79D72C47FCA500D2FF5B;
+			packageReferences = (
+				4FBE79FD2C47FDC600D2FF5B /* XCRemoteSwiftPackageReference "Mammut" */,
+				4FBE7A002C47FDD300D2FF5B /* XCRemoteSwiftPackageReference "SwiftChameleon" */,
+			);
 			productRefGroup = 4FBE79E12C47FCA500D2FF5B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +209,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FBE79E62C47FCA500D2FF5B /* ContentView.swift in Sources */,
+				4FBE79E62C47FCA500D2FF5B /* MainScreen.swift in Sources */,
+				4FBE79F82C47FD6800D2FF5B /* ErrorObj.swift in Sources */,
+				4FBE7A042C47FEB200D2FF5B /* Network.swift in Sources */,
+				4FBE79FA2C47FD8000D2FF5B /* NetworkEnv.swift in Sources */,
 				4FBE79E42C47FCA500D2FF5B /* Hackathon3App.swift in Sources */,
+				4FBE79FC2C47FDAC00D2FF5B /* APIEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +420,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4FBE79FD2C47FDC600D2FF5B /* XCRemoteSwiftPackageReference "Mammut" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simon-zwicker/Mammut";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		4FBE7A002C47FDD300D2FF5B /* XCRemoteSwiftPackageReference "SwiftChameleon" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simon-zwicker/SwiftChameleon";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4FBE79FE2C47FDC600D2FF5B /* Mammut */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4FBE79FD2C47FDC600D2FF5B /* XCRemoteSwiftPackageReference "Mammut" */;
+			productName = Mammut;
+		};
+		4FBE7A012C47FDD300D2FF5B /* SwiftChameleon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4FBE7A002C47FDD300D2FF5B /* XCRemoteSwiftPackageReference "SwiftChameleon" */;
+			productName = SwiftChameleon;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4FBE79D82C47FCA500D2FF5B /* Project object */;
 }
