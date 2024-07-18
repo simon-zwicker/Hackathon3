@@ -75,7 +75,7 @@ struct MatchStackCard: View {
                     withAnimation {
                         if checkingStatus > (width/2) {
                             offset = (translation > 0 ? width: -width) * 2
-                            endSwipeAction()
+                            endSwipeAction(translation > 0 ? .right : .left)
                         } else {
                             offset = .zero
                         }
@@ -84,7 +84,7 @@ struct MatchStackCard: View {
         )
     }
 
-    func endSwipeAction() {
+    func endSwipeAction(_ direction: Direction) {
         withAnimation(.none) {
             endSwipe.setTrue()
         }
@@ -95,6 +95,12 @@ struct MatchStackCard: View {
                     matchModel.displayingMovies.removeFirst()
                 }
             }
+        }
+        switch direction {
+        case .left:
+            UserDefaults().set(false, forKey: "liked\(movie.id)")
+        case .right:
+            UserDefaults().set(true, forKey: "liked\(movie.id)")
         }
     }
 

@@ -54,7 +54,6 @@ struct MatchScreen: View {
                 
                 GenrePicker()
                     .environment(matchModel)
-                
                 Image(systemName: "heart.fill")
                     .font(.Bold.title4)
                     .foregroundStyle(.white.opacity(0.6))

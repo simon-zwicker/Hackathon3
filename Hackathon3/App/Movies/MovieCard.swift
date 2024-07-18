@@ -35,6 +35,7 @@ struct MovieCard: View {
                                 .foregroundStyle(.ultraThickMaterial)
                                 .button {
                                     liked.toggle()
+                                    UserDefaults().set(liked, forKey: "liked\(movie.id)")
                                 }
                                 .padding(10)
                         }
@@ -60,6 +61,9 @@ struct MovieCard: View {
         .sheet(isPresented: $showDetail) {
             MovieDetail(movie: movie, liked: $liked)
                 .presentationCornerRadius(25)
+        }
+        .task {
+            liked = UserDefaults().bool(forKey: "liked\(movie.id)")
         }
     }
     
