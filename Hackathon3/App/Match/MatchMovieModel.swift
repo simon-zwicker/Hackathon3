@@ -16,6 +16,7 @@ class MatchMovieModel {
 
     var hasNextPage: Bool = true
     var genre: Int = UserDefaults().integer(forKey: "selectedGenre")
+    var isInFetch = false
 
     init() {
         self.currentMovies = nil
@@ -24,6 +25,7 @@ class MatchMovieModel {
     }
 
     func fetch(userInitiated: Bool = false) {
+        self.isInFetch = true
         if genre == 0 {
             genre = Genre.action.rawValue
         }
@@ -36,7 +38,10 @@ class MatchMovieModel {
             return defaultsValue > 0 ? defaultsValue : 1
         }()
         if next {
-            guard let totalPages = currentMovies?.totalPages, page < totalPages else { return }
+            guard let totalPages = currentMovies?.totalPages, page < totalPages else {
+                isInFetch = false
+                return
+            }
         }
     
         Task {
@@ -57,6 +62,7 @@ class MatchMovieModel {
                 print("Error on getting Movies: \(error.localizedDescription)")
             }
         }
+        self.isInFetch = false
     }
 
     func getIndex(_ movie: TMDBMovie) -> Int {
