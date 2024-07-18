@@ -31,6 +31,8 @@
 		4FBE7A232C491F9A00D2FF5B /* MeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE7A222C491F9A00D2FF5B /* MeImage.swift */; };
 		4FBE7A262C49220100D2FF5B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4FBE7A252C49220100D2FF5B /* Kingfisher */; };
 		4FBE7A292C49246F00D2FF5B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE7A282C49246F00D2FF5B /* LocationManager.swift */; };
+		4FBE7A2C2C49410B00D2FF5B /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE7A2B2C49410B00D2FF5B /* String.swift */; };
+		4FBE7A2E2C494A7D00D2FF5B /* MatchStackCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE7A2D2C494A7D00D2FF5B /* MatchStackCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		4FBE7A202C491F8C00D2FF5B /* MeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeScreen.swift; sourceTree = "<group>"; };
 		4FBE7A222C491F9A00D2FF5B /* MeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeImage.swift; sourceTree = "<group>"; };
 		4FBE7A282C49246F00D2FF5B /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		4FBE7A2B2C49410B00D2FF5B /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		4FBE7A2D2C494A7D00D2FF5B /* MatchStackCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchStackCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,7 @@
 		4FBE79F22C47FD2F00D2FF5B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4FBE7A2A2C49410200D2FF5B /* Extensions */,
 				4FBE7A272C49246500D2FF5B /* Managers */,
 				4FBE7A132C491ED100D2FF5B /* UIComponents */,
 				4FBE79F52C47FD4F00D2FF5B /* Network */,
@@ -216,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				4FBE7A1D2C491F8000D2FF5B /* MatchScreen.swift */,
+				4FBE7A2D2C494A7D00D2FF5B /* MatchStackCard.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -234,6 +240,14 @@
 				4FBE7A282C49246F00D2FF5B /* LocationManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		4FBE7A2A2C49410200D2FF5B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4FBE7A2B2C49410B00D2FF5B /* String.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,10 +332,12 @@
 			files = (
 				4FBE7A062C4907E900D2FF5B /* OMDBMovie.swift in Sources */,
 				4FBE7A082C49080200D2FF5B /* OMDBRating.swift in Sources */,
+				4FBE7A2C2C49410B00D2FF5B /* String.swift in Sources */,
 				4FBE79E62C47FCA500D2FF5B /* MainScreen.swift in Sources */,
 				4FBE79F82C47FD6800D2FF5B /* ErrorObj.swift in Sources */,
 				4FBE7A102C4911A800D2FF5B /* TMDBMovies.swift in Sources */,
 				4FBE7A0C2C490E1D00D2FF5B /* TmDB.swift in Sources */,
+				4FBE7A2E2C494A7D00D2FF5B /* MatchStackCard.swift in Sources */,
 				4FBE7A152C491EE800D2FF5B /* TabItem.swift in Sources */,
 				4FBE7A042C47FEB200D2FF5B /* Network.swift in Sources */,
 				4FBE7A182C491F5D00D2FF5B /* MoviesScreen.swift in Sources */,
