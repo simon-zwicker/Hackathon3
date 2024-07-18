@@ -10,8 +10,12 @@ import Mammut
 
 struct Network {
 
-    static private var api: Mammut {
-        Mammut(components: NetworkEnv.unknown1.components, loglevel: .debug)
+    static private var ombd: Mammut {
+        Mammut(components: NetworkEnv.ombd.components, loglevel: .debugCurl)
+    }
+
+    static private var tmdb: Mammut {
+        Mammut(components: NetworkEnv.tmdb.components, loglevel: .debugCurl)
     }
 
     static func request<T: Codable>(
@@ -32,8 +36,10 @@ struct Network {
         _ env: NetworkEnv
     ) async -> Result<T, Error> {
         switch env {
-        case .unknown1, .unknown2:
-            return await api.request(endpoint, error: ErrorObj.self)
+        case .ombd:
+            return await ombd.request(endpoint, error: ErrorObj.self)
+        case .tmdb:
+            return await tmdb.request(endpoint, error: ErrorObj.self)
         }
     }
 }

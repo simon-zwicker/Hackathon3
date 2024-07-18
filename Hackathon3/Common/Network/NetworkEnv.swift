@@ -8,29 +8,36 @@
 import Foundation
 
 enum NetworkEnv {
-    case unknown1
-    case unknown2
+    case ombd
+    case tmdb
 }
 
 extension NetworkEnv {
     var scheme: String {
         switch self {
-        case .unknown1: "https"
-        case .unknown2: "https"
+        case .ombd: "https"
+        case .tmdb: "https"
         }
     }
 
     var host: String {
         switch self {
-        case .unknown1: ""
-        case .unknown2: ""
+        case .ombd: "omdbapi.com"
+        case .tmdb: "api.themoviedb.org"
         }
     }
 
     var path: String {
         switch self {
-        case .unknown1: ""
-        case .unknown2: ""
+        case .ombd: "/"
+        case .tmdb: "/3"
+        }
+    }
+
+    var apiKey: String {
+        switch self {
+        case .ombd: "7699b46"
+        case .tmdb: "ff1d5a77eb312ab5e5b47384d0c5de36"
         }
     }
 

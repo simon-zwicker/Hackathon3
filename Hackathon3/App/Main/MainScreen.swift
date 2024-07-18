@@ -6,19 +6,18 @@
 //
 
 import SwiftUI
+import SwiftChameleon
 
 struct MainScreen: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
 
-#Preview {
-    MainScreen()
+    @State private var selected: TabItem = .movies
+
+    var body: some View {
+        TabView(selection: $selected) {
+            ForEach(TabItem.allCases, id: \.self) { tab in
+                tab.view
+                    .tabItem { Label(tab.rawValue, systemImage: tab.icon) }
+            }
+        }
+    }
 }
