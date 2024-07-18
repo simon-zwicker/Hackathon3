@@ -20,15 +20,31 @@ struct MovieCard: View {
         ZStack {
             Color.navigation.lighter(by: 40)
             VStack(alignment: .leading) {
-                if let url = URL(string: "https://image.tmdb.org/t/p/w200\(movie.posterPath)") {
+                if let url = URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)") {
                     AsyncImage(url: url) { phase in
                         if let image = phase.image {
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
-                        } else if phase.error != nil {
-                            LoadFailedView()
+                        } else if let error = phase.error {
+                            AsyncImage(url: url) { phase in
+                                if let image = phase.image {
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
+                                } else if let error = phase.error {
+                                    LoadFailedView(error: error.localizedDescription)
+                                } else {
+                                    RoundedRectangle(cornerRadius: 25, style: .continuous)
+                                        .fill(.thinMaterial)
+                                        .overlay {
+                                            ProgressView()
+                                                .progressViewStyle(.circular)
+                                        }
+                                }
+                            }
                         } else {
                             RoundedRectangle(cornerRadius: 25, style: .continuous)
                                 .fill(.thinMaterial)
@@ -47,7 +63,7 @@ struct MovieCard: View {
                             .padding(10)
                     }
                 } else {
-                    LoadFailedView()
+                    LoadFailedView(error: "URL invalid")
                 }
                 VStack(alignment: .leading) {
                     Text(movie.title)
@@ -111,12 +127,14 @@ struct MovieCard: View {
 }
 
 struct LoadFailedView: View {
+    let error: String
     var body: some View {
         RoundedRectangle(cornerRadius: 25, style: .continuous)
             .fill(.thinMaterial)
             .overlay {
                 Image(systemName: "x.circle")
                     .foregroundStyle(.red)
+                Text(error)
             }
     }
 }

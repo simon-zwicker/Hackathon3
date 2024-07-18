@@ -25,8 +25,8 @@ struct MovieDetail: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
                                 .ignoresSafeArea(edges: .top)
                             Spacer()
-                        } else if phase.error != nil {
-                            LoadFailedView()
+                        } else if let error = phase.error {
+                            LoadFailedView(error: error.localizedDescription)
                         } else {
                             RoundedRectangle(cornerRadius: 25, style: .continuous)
                                 .fill(.thinMaterial)
@@ -47,7 +47,7 @@ struct MovieDetail: View {
                         
                     }
                 } else {
-                    LoadFailedView()
+                    LoadFailedView(error: "URL invalid")
                 }
                 VStack {
                     if let omdb {
