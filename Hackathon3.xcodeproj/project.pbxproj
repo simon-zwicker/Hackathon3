@@ -42,7 +42,22 @@
 		A6F070CB2C49752D0098B1C3 /* GenrePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070CA2C49752D0098B1C3 /* GenrePicker.swift */; };
 		A6F070CE2C49835B0098B1C3 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070CD2C49835B0098B1C3 /* Genres.swift */; };
 		A6F070D02C498F230098B1C3 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070CF2C498F230098B1C3 /* Direction.swift */; };
+		A6F070D32C49BC9D0098B1C3 /* PocketBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070D22C49BC9D0098B1C3 /* PocketBase.swift */; };
+		A6F070D52C49BEB50098B1C3 /* Pockethost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070D42C49BEB50098B1C3 /* Pockethost.swift */; };
+		A6F070E02C49C4440098B1C3 /* Hackathon3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070DF2C49C4440098B1C3 /* Hackathon3Tests.swift */; };
+		A6F070E92C49C9040098B1C3 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070E82C49C9040098B1C3 /* Profile.swift */; };
+		A6F070EB2C49D0670098B1C3 /* Favourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070EA2C49D0670098B1C3 /* Favourite.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A6F070E12C49C4440098B1C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FBE79D82C47FCA500D2FF5B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FBE79DF2C47FCA500D2FF5B;
+			remoteInfo = Hackathon3;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4FBE79E02C47FCA500D2FF5B /* Hackathon3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon3.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +93,12 @@
 		A6F070CA2C49752D0098B1C3 /* GenrePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenrePicker.swift; sourceTree = "<group>"; };
 		A6F070CD2C49835B0098B1C3 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
 		A6F070CF2C498F230098B1C3 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		A6F070D22C49BC9D0098B1C3 /* PocketBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketBase.swift; sourceTree = "<group>"; };
+		A6F070D42C49BEB50098B1C3 /* Pockethost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pockethost.swift; sourceTree = "<group>"; };
+		A6F070DD2C49C4440098B1C3 /* Hackathon3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Hackathon3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6F070DF2C49C4440098B1C3 /* Hackathon3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hackathon3Tests.swift; sourceTree = "<group>"; };
+		A6F070E82C49C9040098B1C3 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		A6F070EA2C49D0670098B1C3 /* Favourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +112,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A6F070DA2C49C4440098B1C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -98,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				4FBE79E22C47FCA500D2FF5B /* Hackathon3 */,
+				A6F070DE2C49C4440098B1C3 /* Hackathon3Tests */,
 				4FBE79E12C47FCA500D2FF5B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				4FBE79E02C47FCA500D2FF5B /* Hackathon3.app */,
+				A6F070DD2C49C4440098B1C3 /* Hackathon3Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -179,6 +209,7 @@
 				4FBE79FB2C47FDAC00D2FF5B /* OMDB.swift */,
 				4FBE7A032C47FEB200D2FF5B /* Network.swift */,
 				4FBE7A0B2C490E1D00D2FF5B /* TmDB.swift */,
+				A6F070D42C49BEB50098B1C3 /* Pockethost.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -186,6 +217,7 @@
 		4FBE79F62C47FD5F00D2FF5B /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				A6F070D12C49BC920098B1C3 /* PocketBase */,
 				4FBE7A0E2C49111A00D2FF5B /* TMDB */,
 				4FBE7A0D2C49111200D2FF5B /* OMDB */,
 				4FBE79F72C47FD6800D2FF5B /* ErrorObj.swift */,
@@ -285,6 +317,24 @@
 			path = Enumerations;
 			sourceTree = "<group>";
 		};
+		A6F070D12C49BC920098B1C3 /* PocketBase */ = {
+			isa = PBXGroup;
+			children = (
+				A6F070D22C49BC9D0098B1C3 /* PocketBase.swift */,
+				A6F070E82C49C9040098B1C3 /* Profile.swift */,
+				A6F070EA2C49D0670098B1C3 /* Favourite.swift */,
+			);
+			path = PocketBase;
+			sourceTree = "<group>";
+		};
+		A6F070DE2C49C4440098B1C3 /* Hackathon3Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A6F070DF2C49C4440098B1C3 /* Hackathon3Tests.swift */,
+			);
+			path = Hackathon3Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -310,6 +360,24 @@
 			productReference = 4FBE79E02C47FCA500D2FF5B /* Hackathon3.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A6F070DC2C49C4440098B1C3 /* Hackathon3Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6F070E32C49C4450098B1C3 /* Build configuration list for PBXNativeTarget "Hackathon3Tests" */;
+			buildPhases = (
+				A6F070D92C49C4440098B1C3 /* Sources */,
+				A6F070DA2C49C4440098B1C3 /* Frameworks */,
+				A6F070DB2C49C4440098B1C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A6F070E22C49C4440098B1C3 /* PBXTargetDependency */,
+			);
+			name = Hackathon3Tests;
+			productName = Hackathon3Tests;
+			productReference = A6F070DD2C49C4440098B1C3 /* Hackathon3Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -322,6 +390,10 @@
 				TargetAttributes = {
 					4FBE79DF2C47FCA500D2FF5B = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					A6F070DC2C49C4440098B1C3 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 4FBE79DF2C47FCA500D2FF5B;
 					};
 				};
 			};
@@ -344,6 +416,7 @@
 			projectRoot = "";
 			targets = (
 				4FBE79DF2C47FCA500D2FF5B /* Hackathon3 */,
+				A6F070DC2C49C4440098B1C3 /* Hackathon3Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -355,6 +428,13 @@
 			files = (
 				4FBE79EB2C47FCA600D2FF5B /* Preview Assets.xcassets in Resources */,
 				4FBE79E82C47FCA600D2FF5B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6F070DB2C49C4440098B1C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +450,7 @@
 				4FBE7A062C4907E900D2FF5B /* OMDBMovie.swift in Sources */,
 				4FBE7A082C49080200D2FF5B /* OMDBRating.swift in Sources */,
 				4FBE7A2C2C49410B00D2FF5B /* String.swift in Sources */,
+				A6F070D52C49BEB50098B1C3 /* Pockethost.swift in Sources */,
 				4FBE79E62C47FCA500D2FF5B /* MainScreen.swift in Sources */,
 				4FBE79F82C47FD6800D2FF5B /* ErrorObj.swift in Sources */,
 				4FBE7A322C495E3100D2FF5B /* MatchMovieModel.swift in Sources */,
@@ -381,6 +462,7 @@
 				4FBE7A152C491EE800D2FF5B /* TabItem.swift in Sources */,
 				4FBE7A042C47FEB200D2FF5B /* Network.swift in Sources */,
 				4FBE7A182C491F5D00D2FF5B /* MoviesScreen.swift in Sources */,
+				A6F070E92C49C9040098B1C3 /* Profile.swift in Sources */,
 				4FBE7A1E2C491F8000D2FF5B /* MatchScreen.swift in Sources */,
 				A6F070C52C4955B00098B1C3 /* MovieInformation.swift in Sources */,
 				4FBE7A1B2C491F7200D2FF5B /* MapScreen.swift in Sources */,
@@ -391,14 +473,32 @@
 				A6F070D02C498F230098B1C3 /* Direction.swift in Sources */,
 				4FBE79FA2C47FD8000D2FF5B /* NetworkEnv.swift in Sources */,
 				4FBE7A122C4911BA00D2FF5B /* TMDBMovie.swift in Sources */,
+				A6F070D32C49BC9D0098B1C3 /* PocketBase.swift in Sources */,
 				4FBE79E42C47FCA500D2FF5B /* Hackathon3App.swift in Sources */,
 				4FBE7A292C49246F00D2FF5B /* LocationManager.swift in Sources */,
 				4FBE79FC2C47FDAC00D2FF5B /* OMDB.swift in Sources */,
+				A6F070EB2C49D0670098B1C3 /* Favourite.swift in Sources */,
 				A6F070C32C4948350098B1C3 /* MovieDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A6F070D92C49C4440098B1C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6F070E02C49C4440098B1C3 /* Hackathon3Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A6F070E22C49C4440098B1C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FBE79DF2C47FCA500D2FF5B /* Hackathon3 */;
+			targetProxy = A6F070E12C49C4440098B1C3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4FBE79EC2C47FCA600D2FF5B /* Debug */ = {
@@ -590,6 +690,42 @@
 			};
 			name = Release;
 		};
+		A6F070E42C49C4450098B1C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 68YWPYV749;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.touchthegrass.hackathon1.Hackathon3Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hackathon3.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Hackathon3";
+			};
+			name = Debug;
+		};
+		A6F070E52C49C4450098B1C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 68YWPYV749;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.touchthegrass.hackathon1.Hackathon3Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hackathon3.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Hackathon3";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -607,6 +743,15 @@
 			buildConfigurations = (
 				4FBE79EF2C47FCA600D2FF5B /* Debug */,
 				4FBE79F02C47FCA600D2FF5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6F070E32C49C4450098B1C3 /* Build configuration list for PBXNativeTarget "Hackathon3Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6F070E42C49C4450098B1C3 /* Debug */,
+				A6F070E52C49C4450098B1C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

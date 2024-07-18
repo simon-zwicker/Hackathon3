@@ -10,6 +10,7 @@ import Foundation
 enum NetworkEnv {
     case ombd
     case tmdb
+    case pock
 }
 
 extension NetworkEnv {
@@ -17,6 +18,7 @@ extension NetworkEnv {
         switch self {
         case .ombd: "https"
         case .tmdb: "https"
+        case .pock: "https"
         }
     }
 
@@ -24,6 +26,7 @@ extension NetworkEnv {
         switch self {
         case .ombd: "omdbapi.com"
         case .tmdb: "api.themoviedb.org"
+        case .pock: "kirreth.pockethost.io"
         }
     }
 
@@ -31,6 +34,7 @@ extension NetworkEnv {
         switch self {
         case .ombd: "/"
         case .tmdb: "/3"
+        case .pock: "/api/collections/"
         }
     }
 
@@ -38,6 +42,7 @@ extension NetworkEnv {
         switch self {
         case .ombd: "7699b46"
         case .tmdb: "ff1d5a77eb312ab5e5b47384d0c5de36"
+        case .pock: ""
         }
     }
 

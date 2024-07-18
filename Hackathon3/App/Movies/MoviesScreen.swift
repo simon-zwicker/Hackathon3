@@ -12,13 +12,11 @@ struct MoviesScreen: View {
     @State var movies: [TMDBMovie] = []
 
     var body: some View {
-        GeometryReader { reader in
-            ScrollView {
-                LazyVGrid(columns: Array(repeating: GridItem(/*.fixed(reader.size.width / 2 - 16)*/.flexible(), spacing: 10
-                                                            ), count: 2)) {
-                    ForEach(movies.sorted(by: {$0.voteAverage > $1.voteAverage}), id: \.self) { movie in
-                        MovieCard(movie: movie)
-                    }
+        ScrollView {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10
+                                                        ), count: 2)) {
+                ForEach(movies.sorted(by: {$0.voteAverage > $1.voteAverage}), id: \.self) { movie in
+                    MovieCard(movie: movie)
                 }
             }
         }
