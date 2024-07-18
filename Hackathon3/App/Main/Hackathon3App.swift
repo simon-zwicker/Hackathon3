@@ -10,12 +10,14 @@ import SwiftUI
 @main
 struct Hackathon3App: App {
 
+    @State private var matchModel: MatchMovieModel = .init()
     @State private var locationManager: LocationManager = .init()
 
     var body: some Scene {
         WindowGroup {
             MainScreen()
                 .environment(locationManager)
+                .environment(matchModel)
         }
     }
 }

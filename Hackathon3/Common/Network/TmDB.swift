@@ -9,7 +9,7 @@ import Mammut
 
 // MARK: - API Endpoint
 enum TmDB {
-    case movie(String)
+    case movie(String, Int)
     case topRated
 }
 
@@ -41,9 +41,9 @@ extension TmDB: Endpoint {
         var parameters: [String: Any] = [:]
         parameters["api_key"] = NetworkEnv.tmdb.apiKey
         switch self {
-        case .movie(let genreId):
+        case .movie(let genreId, let page):
+            parameters["page"] = "\(page)"
             parameters["with_genres"] = genreId
-
         default:
             return parameters
         }
