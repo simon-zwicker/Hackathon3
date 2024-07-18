@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Kingfisher
 
 struct MovieDetail: View {
     let movie: TMDBMovie
@@ -17,25 +18,14 @@ struct MovieDetail: View {
         ScrollView {
             LazyVStack {
                 if let url = URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)") {
-                    AsyncImage(url: url) { phase in
-                        if let image = phase.image {
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
-                                .ignoresSafeArea(edges: .top)
-                            Spacer()
-                        } else if let error = phase.error {
-                            LoadFailedView(error: error.localizedDescription)
-                        } else {
-                            RoundedRectangle(cornerRadius: 25, style: .continuous)
-                                .fill(.thinMaterial)
-                                .overlay {
-                                    ProgressView()
-                                        .progressViewStyle(.circular)
-                                }
+                    KFImage(url)
+                        .placeholder { _ in
+                            ProgressView().progressViewStyle(.circular)
                         }
-                    }
+                        .cacheOriginalImage(true)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
                     .overlay(alignment: .bottomTrailing) {
                         Image(systemName: "heart\(liked ? ".fill" : "")")
                             .foregroundStyle(.ultraThickMaterial)
