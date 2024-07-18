@@ -90,17 +90,14 @@ struct MatchStackCard: View {
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            if let _ = matchModel.displayingMovies.first {
-                let _ = withAnimation {
-                    matchModel.displayingMovies.removeFirst()
+            let _ = withAnimation {
+                switch direction {
+                case .left:
+                    matchModel.doSwipe()
+                case .right:
+                    matchModel.doSwipe(right: true)
                 }
             }
-        }
-        switch direction {
-        case .left:
-            UserDefaults().set(false, forKey: "liked\(movie.id)")
-        case .right:
-            UserDefaults().set(true, forKey: "liked\(movie.id)")
         }
     }
 

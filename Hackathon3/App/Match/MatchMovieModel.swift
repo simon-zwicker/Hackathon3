@@ -25,7 +25,7 @@ class MatchMovieModel {
         set { UserDefaults.standard.set(newValue, forKey: "page\(genre)") }
     }
 
-    var isInFetch = false
+    var isLoading: Bool = false
 
     init() {
         self.currentMovies = nil
@@ -33,13 +33,21 @@ class MatchMovieModel {
         self.displayingMovies = []
     }
 
-    func fetch(userInitiated: Bool = false) {
-        self.isInFetch = true
+    func changeGenre(_ genre: Int) {
+        self.isLoading.setTrue()
+        self.currentMovies = nil
+        self.fetchedMovies = []
+        self.displayingMovies = []
+        self.genre = genre
+        fetch()
+    }
+
+    func fetch() {
+        self.isLoading.setTrue()
 
         if genre == 0 { genre = Genre.action.rawValue }
         if pageUD == 0 { pageUD = 1 }
 
-        let next: Bool = !currentMovies.isNil
         guard hasNextPage else { return }
         Task {
             do {
@@ -51,17 +59,34 @@ class MatchMovieModel {
 
                 self.currentMovies = data
                 self.fetchedMovies.append(contentsOf: data.results)
-                self.displayingMovies = data.results
+                self.displayingMovies = data.results.filter({ !getLocalFav($0.id) })
                 self.hasNextPage = data.page < data.totalPages
                 self.pageUD = data.page
             } catch {
                 print("Error on getting Movies: \(error.localizedDescription)")
             }
         }
-        self.isInFetch = false
+        self.isLoading.setFalse()
     }
 
     func getIndex(_ movie: TMDBMovie) -> Int {
         displayingMovies.firstIndex(where: { $0.id == movie.id }) ?? 0
+    }
+
+    func doSwipe(right: Bool = false) {
+        if let movie = displayingMovies.first {
+            if right {
+                setLocalFavs(movie.id)
+            }
+            displayingMovies.removeFirst()
+        }
+    }
+
+    func setLocalFavs(_ tmdbID: Int, add: Bool = false) {
+        UserDefaults.standard.set(add, forKey: "localFav\(tmdbID)")
+    }
+
+    func getLocalFav(_ tmdbID: Int) -> Bool {
+        UserDefaults.standard.bool(forKey: "localFav\(tmdbID)")
     }
 }
