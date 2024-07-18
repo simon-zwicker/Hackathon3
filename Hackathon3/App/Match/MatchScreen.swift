@@ -10,8 +10,7 @@ import SwiftUI
 struct MatchScreen: View {
 
     @AppStorage("localFavMovies") var localFavs: String = ""
-    @State var current: TMDBMovies?
-    @State var movies: [TMDBMovie] = []
+    @Environment(MatchMovieModel.self) var matchModel: MatchMovieModel
     @State var choosenGenre: Int = 28
     @State var isLoading: Bool = false
 
@@ -26,23 +25,24 @@ struct MatchScreen: View {
             ZStack {
                 if isLoading {
                     ProgressView("Filme werden geladen")
-                } else if movies.isEmpty {
+                } else if matchModel.displayingMovies.isEmpty {
                     VStack {
                         Text("Mehr Matches suchen?")
                         Text("Gib mir mehr!")
                             .button {
-                                fetchMoviesGenres(true)
+                                matchModel.fetch(28)
                             }
                     }
                 } else {
-                    ForEach(movies, id: \.id) { movie in
-                        MatchStackCard(movie: movie, index: getIndex(movie))
+                    ForEach(matchModel.displayingMovies.reversed(), id: \.id) { movie in
+                        MatchStackCard(movie: movie)
                     }
                 }
             }
+            .padding(.top, 30.0)
             .padding()
             .padding(.vertical)
-            .padding(.bottom, 30.0)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             HStack {
                 Image(systemName: "xmark")
@@ -64,34 +64,12 @@ struct MatchScreen: View {
         }
         .padding()
         .onAppear {
-            fetchMoviesGenres()
+            matchModel.fetch(28)
         }
-    }
-
-    private func getIndex(_ movie: TMDBMovie) -> Int {
-        movies.firstIndex(of: movie) ?? 0
     }
 
     private func saveFav(_ value: String) {
         localFavs += "\(value),"
-    }
-
-    private func fetchMoviesGenres(_ loadNext: Bool = false) {
-        self.movies = []
-        Task {
-            do {
-                let data = try await Network.request(
-                    TMDBMovies.self,
-                    environment: .tmdb,
-                    endpoint: TmDB.movie("\(choosenGenre)")
-                )
-
-                self.current = data
-                self.movies = data.results.filter({ !localFavs.toArrayComma.contains(String($0.id)) })
-            } catch {
-                print("Error Getting Movies")
-            }
-        }
     }
 }
 
