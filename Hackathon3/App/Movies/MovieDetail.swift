@@ -33,7 +33,7 @@ struct MovieDetail: View {
                             .font(.title)
                             .button {
                                 liked.toggle()
-                                UserDefaults().set(liked, forKey: "liked\(movie.id)")
+                                UDKey.favourised(movie.id).set(liked)
                             }
                         
                     }

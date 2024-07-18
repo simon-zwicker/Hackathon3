@@ -47,6 +47,7 @@
 		A6F070E02C49C4440098B1C3 /* Hackathon3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070DF2C49C4440098B1C3 /* Hackathon3Tests.swift */; };
 		A6F070E92C49C9040098B1C3 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070E82C49C9040098B1C3 /* Profile.swift */; };
 		A6F070EB2C49D0670098B1C3 /* Favourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070EA2C49D0670098B1C3 /* Favourite.swift */; };
+		A6F070ED2C49D3F20098B1C3 /* UDKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070EC2C49D3F20098B1C3 /* UDKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		A6F070DF2C49C4440098B1C3 /* Hackathon3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hackathon3Tests.swift; sourceTree = "<group>"; };
 		A6F070E82C49C9040098B1C3 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		A6F070EA2C49D0670098B1C3 /* Favourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourite.swift; sourceTree = "<group>"; };
+		A6F070EC2C49D3F20098B1C3 /* UDKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +315,7 @@
 			children = (
 				A6F070CD2C49835B0098B1C3 /* Genres.swift */,
 				A6F070CF2C498F230098B1C3 /* Direction.swift */,
+				A6F070EC2C49D3F20098B1C3 /* UDKey.swift */,
 			);
 			path = Enumerations;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				4FBE7A2C2C49410B00D2FF5B /* String.swift in Sources */,
 				A6F070D52C49BEB50098B1C3 /* Pockethost.swift in Sources */,
 				4FBE79E62C47FCA500D2FF5B /* MainScreen.swift in Sources */,
+				A6F070ED2C49D3F20098B1C3 /* UDKey.swift in Sources */,
 				4FBE79F82C47FD6800D2FF5B /* ErrorObj.swift in Sources */,
 				4FBE7A322C495E3100D2FF5B /* MatchMovieModel.swift in Sources */,
 				4FBE7A102C4911A800D2FF5B /* TMDBMovies.swift in Sources */,

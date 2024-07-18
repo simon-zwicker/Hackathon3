@@ -35,7 +35,7 @@ struct MovieCard: View {
                                 .foregroundStyle(.ultraThickMaterial)
                                 .button {
                                     liked.toggle()
-                                    UserDefaults().set(liked, forKey: "liked\(movie.id)")
+                                    UDKey.favourised(movie.id).set(liked)
                                 }
                                 .padding(10)
                         }
@@ -63,7 +63,7 @@ struct MovieCard: View {
                 .presentationCornerRadius(25)
         }
         .task {
-            liked = UserDefaults().bool(forKey: "liked\(movie.id)")
+            liked = UDKey.favourised(movie.id).value as? Bool ?? false
         }
     }
     

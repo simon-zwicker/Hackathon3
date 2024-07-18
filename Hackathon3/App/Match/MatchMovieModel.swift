@@ -16,13 +16,13 @@ class MatchMovieModel {
 
     var hasNextPage: Bool = true
     var genre: Int {
-        get { UserDefaults.standard.integer(forKey: "selectedGenre") }
-        set { UserDefaults.standard.set(newValue, forKey: "selectedGenre") }
+        get { UDKey.selectedGenre.value as? Int ?? 28 }
+        set { UDKey.selectedGenre.set(newValue) }
     }
 
     var pageUD: Int {
-        get { UserDefaults.standard.integer(forKey: "page\(genre)") }
-        set { UserDefaults.standard.set(newValue, forKey: "page\(genre)") }
+        get { UDKey.page(genre).value as? Int ?? 1 }
+        set { UDKey.page(genre).set(newValue) }
     }
 
     var isLoading: Bool = false

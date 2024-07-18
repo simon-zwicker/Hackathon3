@@ -20,7 +20,7 @@ extension TmDB: Endpoint {
     // MARK: - Path
     var path: String {
         switch self {
-        case .movie: "/discover/movie"
+        case  .movie: "/discover/movie"
         case .topRated: "/movie/top_rated"
         case .genres: "/genre/movie/list"
         }
