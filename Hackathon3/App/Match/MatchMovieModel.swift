@@ -23,13 +23,13 @@ class MatchMovieModel {
 
     func fetch(_ genre: Int) {
         let next: Bool = !currentMovies.isNil
-        guard let page = next ? currentMovies?.page : 0, hasNextPage, let totalPages = currentMovies?.totalPages, page + 1 < totalPages else { return }
+        guard let page = next ? currentMovies?.page: 1, hasNextPage else { return }
         Task {
             do {
                 let data = try await Network.request(
                     TMDBMovies.self,
                     environment: .tmdb,
-                    endpoint: TmDB.movie("\(genre)", page + 1)
+                    endpoint: TmDB.movie("\(genre)", next ? page + 1: page)
                 )
 
                 self.currentMovies = data
