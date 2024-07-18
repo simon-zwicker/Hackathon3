@@ -9,10 +9,7 @@ import SwiftUI
 
 struct MatchScreen: View {
 
-    @AppStorage("localFavMovies") var localFavs: String = ""
     @Environment(MatchMovieModel.self) var matchModel: MatchMovieModel
-    @State var isLoading: Bool = false
-    @State var showSelect: Bool = false
 
     var body: some View {
         VStack {
@@ -21,15 +18,18 @@ struct MatchScreen: View {
                 .font(.Bold.large)
                 .rotationEffect(.degrees(-8))
                 .foregroundStyle(.match.gradient)
+
+            GenrePicker()
+
             ZStack {
-                if isLoading {
+                if matchModel.isLoading {
                     ProgressView("Filme werden geladen")
-                } else if matchModel.displayingMovies.isEmpty {
+                } else if matchModel.displayingMovies.isEmpty && !matchModel.isLoading {
                     VStack {
                         Text("Mehr Matches suchen?")
                         Text("Gib mir mehr!")
                             .button {
-                                matchModel.fetch(userInitiated: true)
+                                matchModel.fetch()
                             }
                     }
                 } else {
@@ -51,9 +51,12 @@ struct MatchScreen: View {
                     .background(.appSec.lighter(by: 10.0).gradient)
                     .clipShape(.circle)
                     .frame(maxWidth: .infinity)
-                
-                GenrePicker()
-                    .environment(matchModel)
+                    .button {
+                        withAnimation {
+                            matchModel.doSwipe()
+                        }
+                    }
+
                 Image(systemName: "heart.fill")
                     .font(.Bold.title4)
                     .foregroundStyle(.white.opacity(0.6))
@@ -61,16 +64,17 @@ struct MatchScreen: View {
                     .background(.match.lighter(by: 10.0).gradient)
                     .clipShape(.circle)
                     .frame(maxWidth: .infinity)
+                    .button {
+                        withAnimation {
+                            matchModel.doSwipe(right: true)
+                        }
+                    }
             }
         }
         .padding()
         .onAppear {
             matchModel.fetch()
         }
-    }
-
-    private func saveFav(_ value: String) {
-        localFavs += "\(value),"
     }
 }
 

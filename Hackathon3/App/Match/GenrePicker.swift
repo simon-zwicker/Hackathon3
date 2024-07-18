@@ -9,46 +9,23 @@ import Foundation
 import SwiftUI
 
 struct GenrePicker: View {
-    @State var loadingFailed: Bool = false
-    @Environment(MatchMovieModel.self) var matchMovieModel
-    @Environment(\.dismiss) var dismiss
+    @Environment(MatchMovieModel.self) var matchModel
     @State var selected: Genre = .action
-    @State var block: Bool = true
-    @State var before: Genre = .action
+
     var body: some View {
         VStack {
             Picker("Genre wählen", selection: $selected) {
                 ForEach(Genre.allCases, id: \.rawValue) { genre in
-                    Text(genre.name).tag(genre)
+                    Text(genre.name)
+                        .tag(genre)
                 }
             }
         }
-        .alert("Laden von Genres fehlgeschlagen", isPresented: $loadingFailed) {
-            Button {
-                loadingFailed.setFalse()
-            } label: {
-                Text("OK")
-            }
-        }
-        .task {
-            selected = Genre(rawValue: matchMovieModel.genre) ?? .action
-            before = selected
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                block = false
-            }
+        .onAppear {
+            selected = Genre(rawValue: matchModel.genre) ?? .action
         }
         .onChange(of: selected) {
-            if !block && !matchMovieModel.isInFetch {
-                print("called fetch")
-                matchMovieModel.genre = selected.rawValue
-                matchMovieModel.fetch()
-                UserDefaults().setValue(selected.rawValue, forKey: "selectedGenre")
-                dismiss()
-            } else if matchMovieModel.isInFetch {
-                selected = before
-            }
+            matchModel.changeGenre(selected.rawValue)
         }
     }
 }
-
-let brokenGenres = ["Romance"]
