@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "applogo_popcorn_sized.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

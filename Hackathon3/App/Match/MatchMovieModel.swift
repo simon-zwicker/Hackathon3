@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftChameleon
 
 @Observable
 class MatchMovieModel {
@@ -14,6 +15,7 @@ class MatchMovieModel {
     var displayingMovies: [TMDBMovie]
 
     var hasNextPage: Bool = true
+    var genre: Int = UserDefaults().integer(forKey: "selectedGenre")
 
     init() {
         self.currentMovies = nil
@@ -21,23 +23,38 @@ class MatchMovieModel {
         self.displayingMovies = []
     }
 
-    func fetch(_ genre: Int) {
+    func fetch(userInitiated: Bool = false) {
+        if genre == 0 {
+            genre = Genre.action.rawValue
+        }
         let next: Bool = !currentMovies.isNil
-        guard let page = next ? currentMovies?.page : 0, hasNextPage, let totalPages = currentMovies?.totalPages, page + 1 < totalPages else { return }
+        let page = {
+            let defaultsValue = UserDefaults().integer(forKey: "page\(genre)")
+            if userInitiated {
+                return defaultsValue + 1
+            }
+            return defaultsValue > 0 ? defaultsValue : 1
+        }()
+        if next {
+            guard let totalPages = currentMovies?.totalPages, page < totalPages else { return }
+        }
+    
         Task {
             do {
+                print(page, genre)
                 let data = try await Network.request(
                     TMDBMovies.self,
                     environment: .tmdb,
-                    endpoint: TmDB.movie("\(genre)", page + 1)
+                    endpoint: TmDB.movie("\(self.genre)", page)
                 )
-
+                UserDefaults().set(page, forKey: "page\(self.genre)")
+                
                 self.currentMovies = data
                 self.fetchedMovies.append(contentsOf: data.results)
                 self.displayingMovies = data.results
                 self.hasNextPage = data.page < data.totalPages
             } catch {
-                print("Error on getting Movies")
+                print("Error on getting Movies: \(error.localizedDescription)")
             }
         }
     }

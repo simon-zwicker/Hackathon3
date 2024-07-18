@@ -11,6 +11,7 @@ import Mammut
 enum TmDB {
     case movie(String, Int)
     case topRated
+    case genres
 }
 
 // MARK: - API Definitions
@@ -21,6 +22,7 @@ extension TmDB: Endpoint {
         switch self {
         case .movie: "/discover/movie"
         case .topRated: "/movie/top_rated"
+        case .genres: "/genre/movie/list"
         }
     }
 
