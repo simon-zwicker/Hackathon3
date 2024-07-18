@@ -15,7 +15,16 @@ class MatchMovieModel {
     var displayingMovies: [TMDBMovie]
 
     var hasNextPage: Bool = true
-    var genre: Int = UserDefaults().integer(forKey: "selectedGenre")
+    var genre: Int {
+        get { UserDefaults.standard.integer(forKey: "selectedGenre") }
+        set { UserDefaults.standard.set(newValue, forKey: "selectedGenre") }
+    }
+
+    var pageUD: Int {
+        get { UserDefaults.standard.integer(forKey: "page\(genre)") }
+        set { UserDefaults.standard.set(newValue, forKey: "page\(genre)") }
+    }
+
     var isInFetch = false
 
     init() {
@@ -26,38 +35,25 @@ class MatchMovieModel {
 
     func fetch(userInitiated: Bool = false) {
         self.isInFetch = true
-        if genre == 0 {
-            genre = Genre.action.rawValue
-        }
+
+        if genre == 0 { genre = Genre.action.rawValue }
+        if pageUD == 0 { pageUD = 1 }
+
         let next: Bool = !currentMovies.isNil
-        let page = {
-            let defaultsValue = UserDefaults().integer(forKey: "page\(genre)")
-            if userInitiated {
-                return defaultsValue + 1
-            }
-            return defaultsValue > 0 ? defaultsValue : 1
-        }()
-        if next {
-            guard let totalPages = currentMovies?.totalPages, page < totalPages else {
-                isInFetch = false
-                return
-            }
-        }
-    
+        guard hasNextPage else { return }
         Task {
             do {
-                print(page, genre)
                 let data = try await Network.request(
                     TMDBMovies.self,
                     environment: .tmdb,
-                    endpoint: TmDB.movie("\(self.genre)", page)
+                    endpoint: TmDB.movie("\(genre)", pageUD)
                 )
-                UserDefaults().set(page, forKey: "page\(self.genre)")
-                
+
                 self.currentMovies = data
                 self.fetchedMovies.append(contentsOf: data.results)
                 self.displayingMovies = data.results
                 self.hasNextPage = data.page < data.totalPages
+                self.pageUD = data.page
             } catch {
                 print("Error on getting Movies: \(error.localizedDescription)")
             }
