@@ -136,6 +136,7 @@ struct LoadFailedView: View {
                     .foregroundStyle(.red)
                 Text(error)
             }
+            .frame(minHeight: 100)
     }
 }
 

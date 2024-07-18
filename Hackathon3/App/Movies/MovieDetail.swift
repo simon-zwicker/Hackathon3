@@ -50,8 +50,7 @@ struct MovieDetail: View {
                     LoadFailedView(error: "URL invalid")
                 }
                 VStack {
-                    if let omdb {
-                        if let plot = omdb.plot, let actors = omdb.actors, let awards = omdb.awards {
+                    if let omdb, let plot = omdb.plot, let actors = omdb.actors, let awards = omdb.awards {
                             VStack {
                                 Text("OMDB")
                                     .font(.footnote)
@@ -62,18 +61,16 @@ struct MovieDetail: View {
                                     }
                                 MovieInformation(title: movie.title, plot: plot, actors: actors, awards: awards)
                             }
-                        }
-                        else {
-                            VStack {
-                                Text("TMDB")
-                                    .font(.footnote)
-                                    .padding(2)
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: 5)
-                                            .stroke()
-                                    }
-                                MovieInformation(title: movie.title, plot: movie.overview, actors: "", awards: "")
-                            }
+                    } else {
+                        VStack {
+                            Text("TMDB")
+                                .font(.footnote)
+                                .padding(2)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke()
+                                }
+                            MovieInformation(title: movie.title, plot: movie.overview, actors: "", awards: "")
                         }
                     }
                 }
@@ -81,12 +78,8 @@ struct MovieDetail: View {
             }
         }
         .task {
-            do {
-                let res = try await Network.request(OMDBMovie.self, environment: .ombd, endpoint: OMDB.byTitle(movie.originalTitle))
-                omdb = res
-            } catch {
-                print("\n\n\n\n\n\n\(error.localizedDescription)\n\n\n\n\n\n\n")
-            }
+            let res = try? await Network.request(OMDBMovie.self, environment: .ombd, endpoint: OMDB.byTitle(movie.originalTitle))
+            omdb = res
         }
     }
 }
