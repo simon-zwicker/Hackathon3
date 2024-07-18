@@ -29,7 +29,7 @@ class MatchMovieModel {
                 let data = try await Network.request(
                     TMDBMovies.self,
                     environment: .tmdb,
-                    endpoint: TmDB.movie("\(genre)")
+                    endpoint: TmDB.movie("\(genre)", page)
                 )
 
                 self.currentMovies = data
