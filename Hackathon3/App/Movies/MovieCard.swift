@@ -67,6 +67,7 @@ struct MovieCard: View {
         .onTapGesture(perform: tapped)
         .sheet(isPresented: $showDetail) {
             MovieDetail(movie: movie, liked: $liked)
+                .presentationCornerRadius(25)
         }
     }
     

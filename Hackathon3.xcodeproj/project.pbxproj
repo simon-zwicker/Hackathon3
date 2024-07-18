@@ -34,6 +34,7 @@
 		A6441C072C492B9B00B16FB0 /* MovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6441C062C492B9B00B16FB0 /* MovieCard.swift */; };
 		A6F070C12C493FF70098B1C3 /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070C02C493FF70098B1C3 /* StarView.swift */; };
 		A6F070C32C4948350098B1C3 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070C22C4948350098B1C3 /* MovieDetail.swift */; };
+		A6F070C52C4955B00098B1C3 /* MovieInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070C42C4955B00098B1C3 /* MovieInformation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		A6441C062C492B9B00B16FB0 /* MovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCard.swift; sourceTree = "<group>"; };
 		A6F070C02C493FF70098B1C3 /* StarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarView.swift; sourceTree = "<group>"; };
 		A6F070C22C4948350098B1C3 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
+		A6F070C42C4955B00098B1C3 /* MovieInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInformation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 				A6F070C02C493FF70098B1C3 /* StarView.swift */,
 				A6441C062C492B9B00B16FB0 /* MovieCard.swift */,
 				A6F070C22C4948350098B1C3 /* MovieDetail.swift */,
+				A6F070C42C4955B00098B1C3 /* MovieInformation.swift */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				4FBE7A042C47FEB200D2FF5B /* Network.swift in Sources */,
 				4FBE7A182C491F5D00D2FF5B /* MoviesScreen.swift in Sources */,
 				4FBE7A1E2C491F8000D2FF5B /* MatchScreen.swift in Sources */,
+				A6F070C52C4955B00098B1C3 /* MovieInformation.swift in Sources */,
 				4FBE7A1B2C491F7200D2FF5B /* MapScreen.swift in Sources */,
 				A6F070C12C493FF70098B1C3 /* StarView.swift in Sources */,
 				4FBE7A0A2C49084400D2FF5B /* OMDBMovies.swift in Sources */,
