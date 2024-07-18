@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import SwiftChameleon
+import Kingfisher
 
 struct MovieCard: View {
     let movie: TMDBMovie
@@ -21,47 +22,22 @@ struct MovieCard: View {
             Color.navigation.lighter(by: 40)
             VStack(alignment: .leading) {
                 if let url = URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)") {
-                    AsyncImage(url: url) { phase in
-                        if let image = phase.image {
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
-                        } else if let error = phase.error {
-                            AsyncImage(url: url) { phase in
-                                if let image = phase.image {
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
-                                } else if let error = phase.error {
-                                    LoadFailedView(error: error.localizedDescription)
-                                } else {
-                                    RoundedRectangle(cornerRadius: 25, style: .continuous)
-                                        .fill(.thinMaterial)
-                                        .overlay {
-                                            ProgressView()
-                                                .progressViewStyle(.circular)
-                                        }
-                                }
-                            }
-                        } else {
-                            RoundedRectangle(cornerRadius: 25, style: .continuous)
-                                .fill(.thinMaterial)
-                                .overlay {
-                                    ProgressView()
-                                        .progressViewStyle(.circular)
-                                }
+                    KFImage(url)
+                        .placeholder { _ in
+                            ProgressView().progressViewStyle(.circular)
                         }
-                    }
-                    .overlay(alignment: .bottomTrailing) {
-                        Image(systemName: "heart\(liked ? ".fill" : "")")
-                            .foregroundStyle(.ultraThickMaterial)
-                            .button {
-                                liked.toggle()
-                            }
-                            .padding(10)
-                    }
+                        .cacheOriginalImage(true)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
+                        .overlay(alignment: .bottomTrailing) {
+                            Image(systemName: "heart\(liked ? ".fill" : "")")
+                                .foregroundStyle(.ultraThickMaterial)
+                                .button {
+                                    liked.toggle()
+                                }
+                                .padding(10)
+                        }
                 } else {
                     LoadFailedView(error: "URL invalid")
                 }

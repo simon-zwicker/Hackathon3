@@ -27,7 +27,7 @@ extension TabItem {
     @ViewBuilder
     var view: some View {
         switch self {
-        case .movies: MoviesScreen()
+        case .movies: MoviesScreen().padding(.horizontal, 10)
         case .map: MapScreen()
         case .match: MatchScreen()
         case .me: MeScreen()
