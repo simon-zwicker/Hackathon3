@@ -74,11 +74,13 @@ class MatchMovieModel {
     }
 
     func doSwipe(right: Bool = false) {
+        print(displayingMovies.first?.id.description)
         if let movie = displayingMovies.first {
             if right {
-                setLocalFavs(movie.id)
+                setLocalFavs(movie.id, add: true)
             }
             displayingMovies.removeFirst()
+            print(getLocalFav(movie.id))
         }
     }
 
