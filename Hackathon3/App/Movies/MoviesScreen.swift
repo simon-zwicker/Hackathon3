@@ -12,12 +12,20 @@ struct MoviesScreen: View {
     @State var movies: [TMDBMovie] = []
 
     var body: some View {
-        List(movies, id: \.id) { movie in
-            Text(movie.title)
+        GeometryReader { reader in
+            ScrollView {
+                LazyVGrid(columns: Array(repeating: GridItem(/*.fixed(reader.size.width / 2 - 16)*/.flexible(), spacing: 10
+                                                            ), count: 2)) {
+                    ForEach(movies.sorted(by: {$0.voteAverage > $1.voteAverage}), id: \.self) { movie in
+                        MovieCard(movie: movie)
+                    }
+                }
+            }
         }
         .task {
             await fetchTopRated()
         }
+        //http://img.omdbapi.com/?apikey=7699b46&
     }
 
     private func fetchTopRated() async {
@@ -33,4 +41,10 @@ struct MoviesScreen: View {
             print("error on fetch movies")
         }
     }
+}
+
+
+#Preview {
+    MoviesScreen()
+        .padding(.horizontal, 10)
 }
