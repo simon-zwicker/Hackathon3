@@ -14,6 +14,7 @@ enum Pockethost {
     case createProfile(String, String, String)
     case getProfile(String)
     case favourites
+    case getFavourite(String)
     case createFavourite(String, String)
     case patchFavourite(String, String, String)
 }
@@ -27,14 +28,14 @@ extension Pockethost: Endpoint {
         case .getProfile(let id): "/profile/records/\(id)"
         case .createProfile, .getProfiles: "/profile/records"
         case .favourites, .createFavourite: "/favourites/records"
-        case .patchFavourite(let id, _, _): "/favourites/records/\(id)"
+        case .patchFavourite(let id, _, _), .getFavourite(let id): "/favourites/records/\(id)"
         }
     }
 
     // MARK: - Method
     var method: MammutMethod {
         switch self {
-        case .getProfiles, .getProfile, .favourites:
+        case .getProfiles, .getProfile, .favourites, .getFavourite:
                 .get
         case .createProfile, .createFavourite:
                 .post

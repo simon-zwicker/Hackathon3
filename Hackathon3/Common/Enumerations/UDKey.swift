@@ -11,6 +11,8 @@ enum UDKey {
     case selectedGenre
     case page(Int) ///Page current page for genre
     case favourised(Int)
+    case favouritesID
+    case profileID
 }
 
 extension UDKey {
@@ -19,15 +21,19 @@ extension UDKey {
         case .selectedGenre: "selectedGenre"
         case .page(let int): "page\(int)"
         case .favourised(let int): "liked\(int)"
+        case .favouritesID: "favouritesID"
+        case .profileID: "profileID"
         }
     }
     
-    var value: Any {
+    var value: Any? {
         switch self {
         case .selectedGenre, .page:
             UserDefaults.standard.integer(forKey: self.key)
-        case .favourised(let int):
+        case .favourised:
             UserDefaults.standard.bool(forKey: self.key)
+        case.favouritesID, .profileID:
+            UserDefaults.standard.string(forKey: self.key)
         }
     }
     

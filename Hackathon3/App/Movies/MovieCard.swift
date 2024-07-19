@@ -16,6 +16,8 @@ struct MovieCard: View {
     @State var failed: Bool = false
     @State var timer: Timer? = nil
     @State var showDetail: Bool = false
+    @Binding var likeDisabled: Bool
+    @State var showUserCreation: Bool = false // falls irgendwie in userDefaults die userid verloren geht, fragt nicht, errorhandling für zeug was hoffentlich nie auftritt
     
     var body: some View {
         ZStack {
@@ -34,9 +36,9 @@ struct MovieCard: View {
                             Image(systemName: "heart\(liked ? ".fill" : "")")
                                 .foregroundStyle(.ultraThickMaterial)
                                 .button {
-                                    liked.toggle()
-                                    UDKey.favourised(movie.id).set(liked)
+                                    toggleLike()
                                 }
+                                .disabled(likeDisabled)
                                 .padding(10)
                         }
                 } else {
@@ -59,14 +61,20 @@ struct MovieCard: View {
         .clipShape(RoundedRectangle(cornerRadius: 27, style: .continuous))
         .onTapGesture(perform: tapped)
         .sheet(isPresented: $showDetail) {
-            MovieDetail(movie: movie, liked: $liked)
+            MovieDetail(movie: movie, liked: $liked, likeDisabled: $likeDisabled) {
+                toggleLike()
+            }
                 .presentationCornerRadius(25)
         }
         .task {
             liked = UDKey.favourised(movie.id).value as? Bool ?? false
         }
+        .sheet(isPresented: $showUserCreation) {
+            CreateUser()
+                .interactiveDismissDisabled()
+        }
     }
-    
+ 
     private func tapped() {
         guard let timer else {
             createTimer()
@@ -84,6 +92,27 @@ struct MovieCard: View {
         timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { timer in
             showDetail = true
             timer.invalidate()
+        }
+    }
+    
+    private func toggleLike() {
+        Task {
+            likeDisabled.setTrue()
+            liked.toggle()
+            UDKey.favourised(movie.id).set(liked)
+            let res = await Favourite.changeOne(movieID: movie.id, favourised: liked)
+            switch res {
+            case .ok(let t):
+                break
+            case .error(let e):
+                switch e {
+                case .userID:
+                    showUserCreation = true
+                default:
+                    print(e.localizedDescription)
+                }
+            }
+            likeDisabled.setFalse()
         }
     }
 }

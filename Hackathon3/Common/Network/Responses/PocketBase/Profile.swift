@@ -13,3 +13,10 @@ struct Profile: Codable {
     var location: String
     var name: String
 }
+
+extension Profile {
+    static func create(_ username: String, gender: Gender, location: String) async -> String? {
+        guard let res = try? await Network.request(Profile.self, environment: .pock, endpoint: Pockethost.createProfile(username, gender.dbName, location)) else { return nil }
+        return res.id
+    }
+}

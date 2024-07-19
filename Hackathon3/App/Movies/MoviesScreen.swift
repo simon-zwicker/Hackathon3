@@ -10,13 +10,14 @@ import SwiftUI
 struct MoviesScreen: View {
 
     @State var movies: [TMDBMovie] = []
+    @State var likeDisabled: Bool = false
 
     var body: some View {
         ScrollView {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10
                                                         ), count: 2)) {
                 ForEach(movies.sorted(by: {$0.voteAverage > $1.voteAverage}), id: \.self) { movie in
-                    MovieCard(movie: movie)
+                    MovieCard(movie: movie, likeDisabled: $likeDisabled)
                 }
             }
         }

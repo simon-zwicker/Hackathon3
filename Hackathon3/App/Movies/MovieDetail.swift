@@ -13,6 +13,8 @@ struct MovieDetail: View {
     let movie: TMDBMovie
     @Binding var liked: Bool
     @State var omdb: OMDBMovie? = nil
+    @Binding var likeDisabled: Bool
+    var toggleLike: () -> Void
     
     var body: some View {
         ScrollView {
@@ -32,9 +34,9 @@ struct MovieDetail: View {
                             .padding(20)
                             .font(.title)
                             .button {
-                                liked.toggle()
-                                UDKey.favourised(movie.id).set(liked)
+                                toggleLike()
                             }
+                            .disabled(likeDisabled)
                         
                     }
                 } else {
