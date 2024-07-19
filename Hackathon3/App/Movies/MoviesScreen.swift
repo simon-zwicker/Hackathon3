@@ -14,17 +14,21 @@ struct MoviesScreen: View {
 
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10
-                                                        ), count: 2)) {
+            LazyVGrid(
+                columns: Array(
+                    repeating: GridItem(.flexible(), spacing: 10),
+                    count: 2
+                )
+            ) {
                 ForEach(moviesModel.movies.sorted(by: {$0.voteAverage > $1.voteAverage}), id: \.self) { movie in
                     MovieCard(movie: movie, likeDisabled: $likeDisabled)
                 }
             }
         }
+        .scrollIndicators(.hidden)
         .task {
             await moviesModel.fetch()
         }
-        //http://img.omdbapi.com/?apikey=7699b46&
     }
 }
 
