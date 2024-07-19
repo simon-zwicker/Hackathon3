@@ -64,11 +64,8 @@ struct MapScreen: View {
         .sheet(item: $choosedProfile) {
             self.choosedProfile = nil
         } content: { profile in
-            VStack {
-                MeImage(name: profile.name, color: .blue)
-            }
-            .padding()
-            .presentationDetents([.medium])
+            MapProfile(profile: profile)
+                .presentationDetents([.medium])
         }
         .onChange(of: radius) {
             showLocation()
