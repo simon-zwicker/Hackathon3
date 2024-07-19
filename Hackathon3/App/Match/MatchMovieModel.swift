@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftChameleon
 
 @Observable
 class MatchMovieModel {
@@ -14,6 +15,17 @@ class MatchMovieModel {
     var displayingMovies: [TMDBMovie]
 
     var hasNextPage: Bool = true
+    var genre: Int {
+        get { UDKey.selectedGenre.value as? Int ?? 28 }
+        set { UDKey.selectedGenre.set(newValue) }
+    }
+
+    var pageUD: Int {
+        get { UDKey.page(genre).value as? Int ?? 1 }
+        set { UDKey.page(genre).set(newValue) }
+    }
+
+    var isLoading: Bool = false
 
     init() {
         self.currentMovies = nil
@@ -21,28 +33,63 @@ class MatchMovieModel {
         self.displayingMovies = []
     }
 
-    func fetch(_ genre: Int) {
-        let next: Bool = !currentMovies.isNil
-        guard let page = next ? currentMovies?.page : 0, hasNextPage, let totalPages = currentMovies?.totalPages, page + 1 < totalPages else { return }
+    func changeGenre(_ genre: Int) {
+        self.isLoading.setTrue()
+        self.currentMovies = nil
+        self.fetchedMovies = []
+        self.displayingMovies = []
+        self.genre = genre
         Task {
-            do {
-                let data = try await Network.request(
-                    TMDBMovies.self,
-                    environment: .tmdb,
-                    endpoint: TmDB.movie("\(genre)", page + 1)
-                )
+            await fetch()
+        }
+    }
 
-                self.currentMovies = data
-                self.fetchedMovies.append(contentsOf: data.results)
-                self.displayingMovies = data.results
-                self.hasNextPage = data.page < data.totalPages
-            } catch {
-                print("Error on getting Movies")
-            }
+    func fetch() async {
+        self.isLoading.setTrue()
+
+        if genre == 0 { genre = Genre.action.rawValue }
+        if pageUD == 0 { pageUD = 1 }
+
+        guard hasNextPage else { return }
+        do {
+            let data = try await Network.request(
+                TMDBMovies.self,
+                environment: .tmdb,
+                endpoint: TmDB.movie("\(genre)", pageUD)
+            )
+
+            self.currentMovies = data
+            self.fetchedMovies.append(contentsOf: data.results)
+            self.displayingMovies = data.results.filter({ !getLocalFav($0.id) })
+            self.hasNextPage = data.page < data.totalPages
+            self.pageUD = data.page
+            self.isLoading.setFalse()
+        } catch {
+            print("Error on getting Movies: \(error.localizedDescription)")
         }
     }
 
     func getIndex(_ movie: TMDBMovie) -> Int {
         displayingMovies.firstIndex(where: { $0.id == movie.id }) ?? 0
+    }
+
+    func doSwipe(right: Bool = false) {
+        Task {
+            if let movie = displayingMovies.first {
+                if right {
+                    setLocalFavs(movie.id, add: true)
+                }
+                displayingMovies.removeFirst()
+                _ = await Favourite.changeOne(movieID: movie.id, favourised: right)
+            }
+        }
+    }
+
+    func setLocalFavs(_ tmdbID: Int, add: Bool = false) {
+        UDKey.favourised(tmdbID).set(add)
+    }
+
+    func getLocalFav(_ tmdbID: Int) -> Bool {
+        (UDKey.favourised(tmdbID).value as? Bool) ?? false
     }
 }

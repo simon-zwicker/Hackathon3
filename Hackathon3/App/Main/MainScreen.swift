@@ -10,7 +10,9 @@ import SwiftChameleon
 
 struct MainScreen: View {
 
+    @Environment(ProfilesModel.self) private var profilesModel
     @State private var selected: TabItem = .movies
+    @State private var showUserCreation: Bool = false
 
     var body: some View {
         TabView(selection: $selected) {
@@ -18,6 +20,14 @@ struct MainScreen: View {
                 tab.view
                     .tabItem { Label(tab.rawValue, systemImage: tab.icon) }
             }
+        }
+        .onAppear {
+            showUserCreation = profilesModel.userProfile.isNil
+        }
+        .sheet(isPresented: $showUserCreation) {
+            CreateUser()
+                .interactiveDismissDisabled()
+                .presentationDetents([.medium])
         }
     }
 }

@@ -9,10 +9,7 @@ import SwiftUI
 
 struct MatchScreen: View {
 
-    @AppStorage("localFavMovies") var localFavs: String = ""
     @Environment(MatchMovieModel.self) var matchModel: MatchMovieModel
-    @State var choosenGenre: Int = 28
-    @State var isLoading: Bool = false
 
     var body: some View {
         VStack {
@@ -22,15 +19,19 @@ struct MatchScreen: View {
                 .rotationEffect(.degrees(-8))
                 .foregroundStyle(.match.gradient)
 
+            GenrePicker()
+
             ZStack {
-                if isLoading {
+                if matchModel.isLoading {
                     ProgressView("Filme werden geladen")
-                } else if matchModel.displayingMovies.isEmpty {
+                } else if matchModel.displayingMovies.isEmpty && !matchModel.isLoading {
                     VStack {
                         Text("Mehr Matches suchen?")
                         Text("Gib mir mehr!")
                             .button {
-                                matchModel.fetch(28)
+                                Task {
+                                    await matchModel.fetch()
+                                }
                             }
                     }
                 } else {
@@ -47,29 +48,32 @@ struct MatchScreen: View {
             HStack {
                 Image(systemName: "xmark")
                     .font(.Bold.title4)
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(.purple.gradient)
                     .padding(15.0)
-                    .background(.appSec.lighter(by: 10.0).gradient)
+                    .background(.gray.lighter().gradient)
                     .clipShape(.circle)
                     .frame(maxWidth: .infinity)
+                    .button {
+                        withAnimation {
+                            matchModel.doSwipe()
+                        }
+                    }
 
                 Image(systemName: "heart.fill")
                     .font(.Bold.title4)
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(.red.gradient)
                     .padding(15.0)
-                    .background(.match.lighter(by: 10.0).gradient)
+                    .background(.gray.lighter().gradient)
                     .clipShape(.circle)
                     .frame(maxWidth: .infinity)
+                    .button {
+                        withAnimation {
+                            matchModel.doSwipe(right: true)
+                        }
+                    }
             }
         }
         .padding()
-        .onAppear {
-            matchModel.fetch(28)
-        }
-    }
-
-    private func saveFav(_ value: String) {
-        localFavs += "\(value),"
     }
 }
 

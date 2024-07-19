@@ -10,14 +10,25 @@ import SwiftUI
 @main
 struct Hackathon3App: App {
 
+    @State private var profilesModel: ProfilesModel = .init()
+    @State private var moviesModel: MoviesModel = .init()
     @State private var matchModel: MatchMovieModel = .init()
     @State private var locationManager: LocationManager = .init()
+    @State var isLoading: Bool = true
 
     var body: some Scene {
         WindowGroup {
-            MainScreen()
-                .environment(locationManager)
-                .environment(matchModel)
+            ZStack {
+                if isLoading {
+                    LoadingScreen(isLoading: $isLoading)
+                } else {
+                    MainScreen()
+                }
+            }
+            .environment(locationManager)
+            .environment(matchModel)
+            .environment(moviesModel)
+            .environment(profilesModel)
         }
     }
 }

@@ -17,6 +17,10 @@ struct Network {
     static private var tmdb: Mammut {
         Mammut(components: NetworkEnv.tmdb.components, loglevel: .debugCurl)
     }
+    
+    static private var pock: Mammut {
+        Mammut(components: NetworkEnv.pock.components, loglevel: .debugCurl)
+    }
 
     static func request<T: Codable>(
         _ T: T.Type,
@@ -40,6 +44,8 @@ struct Network {
             return await ombd.request(endpoint, error: ErrorObj.self)
         case .tmdb:
             return await tmdb.request(endpoint, error: ErrorObj.self)
+        case .pock:
+            return await pock.request(endpoint, error: ErrorObj.self)
         }
     }
 }
