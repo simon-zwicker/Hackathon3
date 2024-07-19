@@ -34,7 +34,7 @@ extension NetworkEnv {
         switch self {
         case .ombd: "/"
         case .tmdb: "/3"
-        case .pock: "/api/collections/"
+        case .pock: "/api/collections"
         }
     }
 
