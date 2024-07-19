@@ -24,7 +24,8 @@ struct MapProfile: View {
                 }
             }
             else {
-                Text("Date wurde an XYZ angefragt")
+                Text("\(profile.name) wurder per Email über deine Date-Anfrage informiert.")
+                    .font(.Regular.small)
             }
             List {
                 Section(header: Text("Favoriten")) {
