@@ -32,6 +32,18 @@ struct MeScreen: View {
                     List {
                         ForEach(profilesModel.favs, id: \.id) { movie in
                             FavouritesRow(movie: movie)
+                                .swipeActions() {
+                                    Button(role: .destructive) {
+                                        Task {
+                                            await Favourite.changeOne(movieID: movie.id, favourised: false)
+                                            UDKey.favourised(movie.id).set(false)
+                                            profilesModel.favs.removeAll(where: {$0.id == movie.id}) //to fix bug where for a short time the deleted movie reappears
+                                            await profilesModel.fetchFavs()
+                                        }
+                                    } label: {
+                                        Image(systemName: "heart.slash")
+                                    }
+                                }
                         }
                     }
                 }
