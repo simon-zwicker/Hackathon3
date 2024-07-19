@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftUI
+import CoreLocation
 
 @Observable
 class ProfilesModel {
@@ -31,12 +31,12 @@ class ProfilesModel {
         }
     }
 
-    func createUser(_ name: String, _ gender: Gender) async -> Bool {
-        guard 
+    func createUser(_ name: String, _ gender: Gender, _ location: CLLocationCoordinate2D? = nil) async -> Bool {
+        guard
         let profileID = await Profile.create(
             name,
             gender: gender,
-            location: "49.006889,8.403653"
+            location: "\(String(location?.latitude ?? 0.0)),\(String(location?.longitude ?? 0.0))"
         ),
         let favId = await Favourite.create(
             "",
@@ -49,6 +49,9 @@ class ProfilesModel {
         
         UDKey.favouritesID.set(favId)
         UDKey.profileID.set(profileID)
+        Task {
+            await fetch()
+        }
         return true
     }
     

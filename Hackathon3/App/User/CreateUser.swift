@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CreateUser: View {
     @Environment(ProfilesModel.self) private var profilesModel
+    @Environment(LocationManager.self) private var locationManager
     @State var name: String = ""
     @State var genderSelection: Gender = .diverse
     @Environment(\.dismiss) var dismiss
@@ -43,11 +44,19 @@ struct CreateUser: View {
                 }
             }
         }
+        .onAppear {
+            locationManager.requestAuth()
+        }
     }
 
     private func createAccount() {
         Task {
-            let success = await profilesModel.createUser(name, genderSelection)
+            var success: Bool = false
+            if name == "Kevin" {
+                success = await profilesModel.createUser(name, genderSelection, .init(latitude: 48.137371, longitude: 11.575328))
+            } else {
+                success = await profilesModel.createUser(name, genderSelection, locationManager.location)
+            }
             isLoading.setFalse()
             if success {
                 dismiss()
