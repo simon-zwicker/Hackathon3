@@ -10,6 +10,7 @@ import MapKit
 
 struct MapScreen: View {
 
+    @Environment(ProfilesModel.self) private var profilesModel
     @Environment(LocationManager.self) private var locationManager
     private var locationUpdated: Bool = false
 

@@ -11,7 +11,6 @@ enum TabItem: String, CaseIterable {
     case movies = "Movies"
     case map = "Map"
     case match = "Match"
-    case favs = "Favourites"
     case me = "Me"
 }
 
@@ -22,7 +21,6 @@ extension TabItem {
         case .map: "map.fill"
         case .match: "heart.fill"
         case .me: "person.fill"
-        case .favs: "star"
         }
     }
 
@@ -33,7 +31,6 @@ extension TabItem {
         case .map: MapScreen()
         case .match: MatchScreen()
         case .me: MeScreen()
-        case .favs: FavList()
         }
     }
 }
