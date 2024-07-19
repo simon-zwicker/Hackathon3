@@ -33,10 +33,7 @@ extension Favourite {
         guard let id = await Favourite.getOrCreateID(profileID: profileID) else { return .error(.favID)}
         
         guard let res = await Favourite.fetch(id)?.movieIDtmdb else { return .error(.fetch) }
-        var favs: [Int] = res.split(separator: ",").compactMap({ str in
-            let strID = str.trimmingCharacters(in: .whitespacesAndNewlines)
-            return try? Int(strID, format: .number)
-        })
+        var favs: [Int] = array(res)
         
         print("\n\n before\(favs)")
         if favourised {
@@ -75,5 +72,10 @@ extension Favourite {
         return profileID
     }
     
-    
+    static func array(_ input: String) -> [Int] {
+        input.split(separator: ",").compactMap({ str in
+            let strID = str.trimmingCharacters(in: .whitespacesAndNewlines)
+            return try? Int(strID, format: .number)
+        })
+    }
 }

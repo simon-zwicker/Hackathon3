@@ -12,6 +12,7 @@ enum TmDB {
     case movie(String, Int)
     case topRated
     case genres
+    case specificMovie(Int)
 }
 
 // MARK: - API Definitions
@@ -20,7 +21,8 @@ extension TmDB: Endpoint {
     // MARK: - Path
     var path: String {
         switch self {
-        case  .movie: "/discover/movie"
+        case .movie: "/discover/movie"
+        case .specificMovie(let id): "/movie/\(id)"
         case .topRated: "/movie/top_rated"
         case .genres: "/genre/movie/list"
         }
