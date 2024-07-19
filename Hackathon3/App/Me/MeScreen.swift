@@ -56,5 +56,10 @@ struct MeScreen: View {
             }
         }
         .padding(.vertical)
+        .onAppear {
+            Task {
+                await profilesModel.fetchFavs()
+            }
+        }
     }
 }

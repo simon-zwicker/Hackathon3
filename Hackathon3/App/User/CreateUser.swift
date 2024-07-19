@@ -17,33 +17,61 @@ struct CreateUser: View {
     @State var isLoading: Bool = false
 
     var body: some View {
-        Form {
-            Section(header: Text("Name")) {
-                TextField("Name", text: $name)
-            }
-            Section(header: Text("Gender")) {
-                Picker("", selection: $genderSelection) {
-                    ForEach(Gender.allCases, id: \.rawValue) { gender in
-                        Text(gender.displayName).tag(gender)
-                    }
-                }
-                .pickerStyle(PalettePickerStyle())
+
+        VStack(spacing: 30.0) {
+
+            Text("MovieMatch")
+                .font(.Bold.large)
+                .foregroundStyle(.logobg.gradient)
+
+            VStack {
+                Text("Sag uns wer du bist")
+                    .font(.Bold.title3)
+
+                TextField("Name eingeben", text: $name)
+                    .font(.Bold.title)
+                    .multilineTextAlignment(.center)
+                    .padding(15.0)
+                    .foregroundStyle(.blue.gradient)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(.blue.gradient, lineWidth: 2.0)
+                    )
+                    .tint(.blue)
+                    .frame(maxWidth: .infinity)
+                    .padding(20.0)
             }
 
-            ZStack {
-                if isLoading {
-                    ProgressView("Account erstellen ...")
-                } else {
-                    Text("Account erstellen")
-                        .foregroundStyle(name.isEmpty ? .gray: .blue)
-                        .disabled(name.isEmpty)
-                        .button {
-                            isLoading.setTrue()
-                            createAccount()
-                        }
+            VStack {
+                Text("Geschlecht auswählen")
+                    .font(.Bold.title3)
+
+                Picker("", selection: $genderSelection) {
+                    ForEach(Gender.allCases, id: \.rawValue) { gender in
+                        Text(gender.displayName)
+                            .tag(gender)
+                    }
                 }
+                .pickerStyle(.segmented)
             }
+
+            Text("Account erstellen")
+                .font(.Bold.regular)
+                .padding(.horizontal, 30.0)
+                .padding(.vertical, 15.0)
+                .foregroundStyle(.white)
+                .disabled(name.isEmpty)
+                .frame(maxWidth: .infinity)
+                .background(
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .fill(name.isEmpty ? Color.gray: Color.logobg)
+                )
+                .loadingButton(isLoading: $isLoading, action: {
+                    isLoading.setTrue()
+                    createAccount()
+                })
         }
+        .padding()
         .onAppear {
             locationManager.requestAuth()
         }

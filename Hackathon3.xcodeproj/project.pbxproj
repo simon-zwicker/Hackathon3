@@ -72,7 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4FBE79E02C47FCA500D2FF5B /* Hackathon3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon3.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FBE79E02C47FCA500D2FF5B /* MovieMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FBE79E32C47FCA500D2FF5B /* Hackathon3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hackathon3App.swift; sourceTree = "<group>"; };
 		4FBE79E52C47FCA500D2FF5B /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		4FBE79E72C47FCA600D2FF5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 		4FBE79E12C47FCA500D2FF5B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FBE79E02C47FCA500D2FF5B /* Hackathon3.app */,
+				4FBE79E02C47FCA500D2FF5B /* MovieMatch.app */,
 				A6F070DD2C49C4440098B1C3 /* Hackathon3Tests.xctest */,
 			);
 			name = Products;
@@ -382,9 +382,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4FBE79DF2C47FCA500D2FF5B /* Hackathon3 */ = {
+		4FBE79DF2C47FCA500D2FF5B /* MovieMatch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FBE79EE2C47FCA600D2FF5B /* Build configuration list for PBXNativeTarget "Hackathon3" */;
+			buildConfigurationList = 4FBE79EE2C47FCA600D2FF5B /* Build configuration list for PBXNativeTarget "MovieMatch" */;
 			buildPhases = (
 				4FBE79DC2C47FCA500D2FF5B /* Sources */,
 				4FBE79DD2C47FCA500D2FF5B /* Frameworks */,
@@ -394,14 +394,14 @@
 			);
 			dependencies = (
 			);
-			name = Hackathon3;
+			name = MovieMatch;
 			packageProductDependencies = (
 				4FBE79FE2C47FDC600D2FF5B /* Mammut */,
 				4FBE7A012C47FDD300D2FF5B /* SwiftChameleon */,
 				4FBE7A252C49220100D2FF5B /* Kingfisher */,
 			);
 			productName = Hackathon3;
-			productReference = 4FBE79E02C47FCA500D2FF5B /* Hackathon3.app */;
+			productReference = 4FBE79E02C47FCA500D2FF5B /* MovieMatch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A6F070DC2C49C4440098B1C3 /* Hackathon3Tests */ = {
@@ -459,7 +459,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4FBE79DF2C47FCA500D2FF5B /* Hackathon3 */,
+				4FBE79DF2C47FCA500D2FF5B /* MovieMatch */,
 				A6F070DC2C49C4440098B1C3 /* Hackathon3Tests */,
 			);
 		};
@@ -551,7 +551,7 @@
 /* Begin PBXTargetDependency section */
 		A6F070E22C49C4440098B1C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FBE79DF2C47FCA500D2FF5B /* Hackathon3 */;
+			target = 4FBE79DF2C47FCA500D2FF5B /* MovieMatch */;
 			targetProxy = A6F070E12C49C4440098B1C3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -798,7 +798,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FBE79EE2C47FCA600D2FF5B /* Build configuration list for PBXNativeTarget "Hackathon3" */ = {
+		4FBE79EE2C47FCA600D2FF5B /* Build configuration list for PBXNativeTarget "MovieMatch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FBE79EF2C47FCA600D2FF5B /* Debug */,

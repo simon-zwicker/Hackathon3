@@ -11,7 +11,7 @@ import SwiftChameleon
 struct MainScreen: View {
 
     @Environment(ProfilesModel.self) private var profilesModel
-    @State private var selected: TabItem = .movies
+    @State private var selected: TabItem = .match
     @State private var showUserCreation: Bool = false
 
     var body: some View {
@@ -27,7 +27,7 @@ struct MainScreen: View {
         .sheet(isPresented: $showUserCreation) {
             CreateUser()
                 .interactiveDismissDisabled()
-                .presentationDetents([.medium])
+                .presentationDetents([.height(450.0)])
         }
     }
 }

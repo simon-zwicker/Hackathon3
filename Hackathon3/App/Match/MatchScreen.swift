@@ -16,8 +16,8 @@ struct MatchScreen: View {
 
             Text("Match the Movie")
                 .font(.Bold.large)
-                .rotationEffect(.degrees(-8))
-                .foregroundStyle(.match.gradient)
+                .rotationEffect(.degrees(-6))
+                .foregroundStyle(.logobg.gradient)
 
             GenrePicker()
 
