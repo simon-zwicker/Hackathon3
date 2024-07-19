@@ -14,5 +14,5 @@ We present a swift app (SwiftUI) which helps you finding someone else with the s
 
 ## Copyright information
 
-### Authors of the icons (via FlatIcon): 
-- customicondesign_1 
+### Author of the used icon (via FlatIcon): 
+- Freepik
