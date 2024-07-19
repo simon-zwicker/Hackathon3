@@ -9,12 +9,12 @@ import Foundation
 import SwiftUI
 
 struct CreateUser: View {
+    @Environment(ProfilesModel.self) private var profilesModel
     @State var name: String = ""
     @State var genderSelection: Gender = .diverse
-    @State var showNameEmpty: Bool = false
-    @State var creationFailed: Bool = false
     @Environment(\.dismiss) var dismiss
-    
+    @State var isLoading: Bool = false
+
     var body: some View {
         Form {
             Section(header: Text("Name")) {
@@ -28,49 +28,30 @@ struct CreateUser: View {
                 }
                 .pickerStyle(PalettePickerStyle())
             }
-            Button {
-                setup()
-            } label: {
-                Text("Account erstellen")
-            }
-        }
-        .alert("Bitte trage einen Namen ein", isPresented: $showNameEmpty) {
-            Button {
-                showNameEmpty.setFalse()
-            } label: {
-                Text("OK")
-            }
-        }
-        .alert("Profilerstellung fehlgeschlagen", isPresented: $creationFailed) {
-            Button {
-                setup()
-            } label: {
-                Text("Erneut versuchen")
-            }
-            Button {
-                creationFailed.setFalse()
-            } label: {
-                Text("Abbrechen")
+
+            ZStack {
+                if isLoading {
+                    ProgressView("Account erstellen ...")
+                } else {
+                    Text("Account erstellen")
+                        .foregroundStyle(name.isEmpty ? .gray: .blue)
+                        .disabled(name.isEmpty)
+                        .button {
+                            isLoading.setTrue()
+                            createAccount()
+                        }
+                }
             }
         }
     }
-    
-    func setup() {
+
+    private func createAccount() {
         Task {
-            if name.isEmpty {
-                showNameEmpty.setTrue()
-                return
+            let success = await profilesModel.createUser(name, genderSelection)
+            isLoading.setFalse()
+            if success {
+                dismiss()
             }
-            guard let profileID = await Profile.create(name, gender: genderSelection, location: "49.006889,8.403653") else { return creationFail() }
-            guard let favID = await Favourite.create("", profileID: profileID) else { return creationFail() }
-            UDKey.favouritesID.set(favID)
-            UDKey.profileID.set(profileID)
-            creationFailed.setFalse()
-            dismiss()
         }
-    }
-    
-    func creationFail() {
-        creationFailed.setTrue()
     }
 }

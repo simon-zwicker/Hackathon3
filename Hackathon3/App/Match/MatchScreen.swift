@@ -29,7 +29,9 @@ struct MatchScreen: View {
                         Text("Mehr Matches suchen?")
                         Text("Gib mir mehr!")
                             .button {
-                                matchModel.fetch()
+                                Task {
+                                    await matchModel.fetch()
+                                }
                             }
                     }
                 } else {
@@ -72,9 +74,6 @@ struct MatchScreen: View {
             }
         }
         .padding()
-        .onAppear {
-            matchModel.fetch()
-        }
     }
 }
 

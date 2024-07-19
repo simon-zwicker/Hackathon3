@@ -39,34 +39,34 @@ class MatchMovieModel {
         self.fetchedMovies = []
         self.displayingMovies = []
         self.genre = genre
-        fetch()
+        Task {
+            await fetch()
+        }
     }
 
-    func fetch() {
+    func fetch() async {
         self.isLoading.setTrue()
 
         if genre == 0 { genre = Genre.action.rawValue }
         if pageUD == 0 { pageUD = 1 }
 
         guard hasNextPage else { return }
-        Task {
-            do {
-                let data = try await Network.request(
-                    TMDBMovies.self,
-                    environment: .tmdb,
-                    endpoint: TmDB.movie("\(genre)", pageUD)
-                )
+        do {
+            let data = try await Network.request(
+                TMDBMovies.self,
+                environment: .tmdb,
+                endpoint: TmDB.movie("\(genre)", pageUD)
+            )
 
-                self.currentMovies = data
-                self.fetchedMovies.append(contentsOf: data.results)
-                self.displayingMovies = data.results.filter({ !getLocalFav($0.id) })
-                self.hasNextPage = data.page < data.totalPages
-                self.pageUD = data.page
-            } catch {
-                print("Error on getting Movies: \(error.localizedDescription)")
-            }
+            self.currentMovies = data
+            self.fetchedMovies.append(contentsOf: data.results)
+            self.displayingMovies = data.results.filter({ !getLocalFav($0.id) })
+            self.hasNextPage = data.page < data.totalPages
+            self.pageUD = data.page
+            self.isLoading.setFalse()
+        } catch {
+            print("Error on getting Movies: \(error.localizedDescription)")
         }
-        self.isLoading.setFalse()
     }
 
     func getIndex(_ movie: TMDBMovie) -> Int {

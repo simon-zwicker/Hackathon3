@@ -35,6 +35,10 @@
 		4FBE7A2E2C494A7D00D2FF5B /* MatchStackCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE7A2D2C494A7D00D2FF5B /* MatchStackCard.swift */; };
 		4FBE7A302C49514600D2FF5B /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE7A2F2C49514600D2FF5B /* Double.swift */; };
 		4FBE7A322C495E3100D2FF5B /* MatchMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE7A312C495E3100D2FF5B /* MatchMovieModel.swift */; };
+		4FBE7A342C4A543100D2FF5B /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE7A332C4A543100D2FF5B /* LoadingScreen.swift */; };
+		4FBE7A362C4A556300D2FF5B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FBE7A352C4A556300D2FF5B /* Launch Screen.storyboard */; };
+		4FBE7A382C4A560D00D2FF5B /* MoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE7A372C4A560D00D2FF5B /* MoviesModel.swift */; };
+		4FBE7A3A2C4A57D700D2FF5B /* ProfilesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE7A392C4A57D700D2FF5B /* ProfilesModel.swift */; };
 		A6441C072C492B9B00B16FB0 /* MovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6441C062C492B9B00B16FB0 /* MovieCard.swift */; };
 		A6F070C12C493FF70098B1C3 /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070C02C493FF70098B1C3 /* StarView.swift */; };
 		A6F070C32C4948350098B1C3 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070C22C4948350098B1C3 /* MovieDetail.swift */; };
@@ -93,6 +97,10 @@
 		4FBE7A2D2C494A7D00D2FF5B /* MatchStackCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchStackCard.swift; sourceTree = "<group>"; };
 		4FBE7A2F2C49514600D2FF5B /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		4FBE7A312C495E3100D2FF5B /* MatchMovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchMovieModel.swift; sourceTree = "<group>"; };
+		4FBE7A332C4A543100D2FF5B /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		4FBE7A352C4A556300D2FF5B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		4FBE7A372C4A560D00D2FF5B /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
+		4FBE7A392C4A57D700D2FF5B /* ProfilesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesModel.swift; sourceTree = "<group>"; };
 		A6441C062C492B9B00B16FB0 /* MovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCard.swift; sourceTree = "<group>"; };
 		A6F070C02C493FF70098B1C3 /* StarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarView.swift; sourceTree = "<group>"; };
 		A6F070C22C4948350098B1C3 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
@@ -213,6 +221,8 @@
 				4FBE79E32C47FCA500D2FF5B /* Hackathon3App.swift */,
 				4FBE79E52C47FCA500D2FF5B /* MainScreen.swift */,
 				4FBE7A142C491EE800D2FF5B /* TabItem.swift */,
+				4FBE7A332C4A543100D2FF5B /* LoadingScreen.swift */,
+				4FBE7A352C4A556300D2FF5B /* Launch Screen.storyboard */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -277,6 +287,7 @@
 				A6441C062C492B9B00B16FB0 /* MovieCard.swift */,
 				A6F070C22C4948350098B1C3 /* MovieDetail.swift */,
 				A6F070C42C4955B00098B1C3 /* MovieInformation.swift */,
+				4FBE7A372C4A560D00D2FF5B /* MoviesModel.swift */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -368,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				A6F070F22C49DE190098B1C3 /* CreateUser.swift */,
+				4FBE7A392C4A57D700D2FF5B /* ProfilesModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -463,6 +475,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FBE7A362C4A556300D2FF5B /* Launch Screen.storyboard in Resources */,
 				4FBE79EB2C47FCA600D2FF5B /* Preview Assets.xcassets in Resources */,
 				4FBE79E82C47FCA600D2FF5B /* Assets.xcassets in Resources */,
 			);
@@ -489,10 +502,13 @@
 				4FBE7A2C2C49410B00D2FF5B /* String.swift in Sources */,
 				A6F070D52C49BEB50098B1C3 /* Pockethost.swift in Sources */,
 				4FBE79E62C47FCA500D2FF5B /* MainScreen.swift in Sources */,
+				4FBE7A3A2C4A57D700D2FF5B /* ProfilesModel.swift in Sources */,
 				A6F070ED2C49D3F20098B1C3 /* UDKey.swift in Sources */,
+				4FBE7A342C4A543100D2FF5B /* LoadingScreen.swift in Sources */,
 				4FBE79F82C47FD6800D2FF5B /* ErrorObj.swift in Sources */,
 				4FBE7A322C495E3100D2FF5B /* MatchMovieModel.swift in Sources */,
 				A6F070FC2C4A020C0098B1C3 /* FavouriteTMDBMovie.swift in Sources */,
+				4FBE7A382C4A560D00D2FF5B /* MoviesModel.swift in Sources */,
 				4FBE7A102C4911A800D2FF5B /* TMDBMovies.swift in Sources */,
 				4FBE7A0C2C490E1D00D2FF5B /* TmDB.swift in Sources */,
 				A6F070CE2C49835B0098B1C3 /* Genres.swift in Sources */,
@@ -679,6 +695,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -714,6 +731,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;

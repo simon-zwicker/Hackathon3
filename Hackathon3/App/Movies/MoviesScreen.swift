@@ -9,36 +9,22 @@ import SwiftUI
 
 struct MoviesScreen: View {
 
-    @State var movies: [TMDBMovie] = []
+    @Environment(MoviesModel.self) private var moviesModel
     @State var likeDisabled: Bool = false
 
     var body: some View {
         ScrollView {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10
                                                         ), count: 2)) {
-                ForEach(movies.sorted(by: {$0.voteAverage > $1.voteAverage}), id: \.self) { movie in
+                ForEach(moviesModel.movies.sorted(by: {$0.voteAverage > $1.voteAverage}), id: \.self) { movie in
                     MovieCard(movie: movie, likeDisabled: $likeDisabled)
                 }
             }
         }
         .task {
-            await fetchTopRated()
+            await moviesModel.fetch()
         }
         //http://img.omdbapi.com/?apikey=7699b46&
-    }
-
-    private func fetchTopRated() async {
-        do {
-            let data = try await Network.request(
-                TMDBMovies.self,
-                environment: .tmdb,
-                endpoint: TmDB.topRated
-            )
-            print(data)
-            self.movies = data.results
-        } catch {
-            print("error on fetch movies")
-        }
     }
 }
 
