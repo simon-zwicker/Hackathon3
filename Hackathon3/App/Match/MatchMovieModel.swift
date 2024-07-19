@@ -75,23 +75,21 @@ class MatchMovieModel {
 
     func doSwipe(right: Bool = false) {
         Task {
-            print(displayingMovies.first?.id.description)
             if let movie = displayingMovies.first {
                 if right {
                     setLocalFavs(movie.id, add: true)
                 }
                 displayingMovies.removeFirst()
-                print(getLocalFav(movie.id))
-                await Favourite.changeOne(movieID: movie.id, favourised: right)
+                _ = await Favourite.changeOne(movieID: movie.id, favourised: right)
             }
         }
     }
 
     func setLocalFavs(_ tmdbID: Int, add: Bool = false) {
-        UserDefaults.standard.set(add, forKey: "localFav\(tmdbID)")
+        UDKey.favourised(tmdbID).set(add)
     }
 
     func getLocalFav(_ tmdbID: Int) -> Bool {
-        UserDefaults.standard.bool(forKey: "localFav\(tmdbID)")
+        (UDKey.favourised(tmdbID).value as? Bool) ?? false
     }
 }

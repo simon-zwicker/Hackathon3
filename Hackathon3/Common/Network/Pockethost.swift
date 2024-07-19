@@ -35,12 +35,9 @@ extension Pockethost: Endpoint {
     // MARK: - Method
     var method: MammutMethod {
         switch self {
-        case .getProfiles, .getProfile, .favourites, .getFavourite:
-                .get
-        case .createProfile, .createFavourite:
-                .post
-        case .patchFavourite:
-                .patch
+        case .getProfiles, .getProfile, .favourites, .getFavourite: .get
+        case .createProfile, .createFavourite: .post
+        case .patchFavourite: .patch
         }
     }
 
@@ -71,10 +68,8 @@ extension Pockethost: Endpoint {
     // MARK: - Encoding
     var encoding: Encoding {
         switch self {
-        case .createProfile, .createFavourite, .patchFavourite:
-                .json
-        default:
-                .url
+        case .createProfile, .createFavourite, .patchFavourite: .json
+        default: .url
         }
     }
 }
