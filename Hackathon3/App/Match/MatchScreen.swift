@@ -48,9 +48,9 @@ struct MatchScreen: View {
             HStack {
                 Image(systemName: "xmark")
                     .font(.Bold.title4)
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(.purple.gradient)
                     .padding(15.0)
-                    .background(.appSec.lighter(by: 10.0).gradient)
+                    .background(.gray.lighter().gradient)
                     .clipShape(.circle)
                     .frame(maxWidth: .infinity)
                     .button {
@@ -61,9 +61,9 @@ struct MatchScreen: View {
 
                 Image(systemName: "heart.fill")
                     .font(.Bold.title4)
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(.red.gradient)
                     .padding(15.0)
-                    .background(.match.lighter(by: 10.0).gradient)
+                    .background(.gray.lighter().gradient)
                     .clipShape(.circle)
                     .frame(maxWidth: .infinity)
                     .button {

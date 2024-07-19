@@ -13,7 +13,31 @@ class ProfilesModel {
     var profiles: [Profile] = []
     var favs: [FavouriteTMDBMovie] = []
     var favsFetchBlocked = false
-    
+
+    var mapFilterRadius: Bool = true
+    var mapRadius: Double = 2
+
+    var mapProfiles: [Profile] {
+        guard let user = userProfile else { return [] }
+        var filtered: [Profile] = []
+        for profile in profiles {
+            guard profile.id != user.id else { continue }
+            if mapFilterRadius {
+                let user2d = getLocation(user)
+                let location2d = getLocation(profile)
+                let distance = CLLocation(latitude: location2d.latitude, longitude: location2d.longitude)
+                    .distance(from: CLLocation(latitude: user2d.latitude, longitude: user2d.longitude))
+
+                if distance <= (mapRadius * 1000) {
+                    filtered.append(profile)
+                }
+            } else {
+                filtered.append(profile)
+            }
+        }
+        return filtered
+    }
+
     var userProfile: Profile? {
         profiles.first(where: { $0.id == (UDKey.profileID.value as? String) })
     }
@@ -83,5 +107,12 @@ class ProfilesModel {
             print(error.localizedDescription)
         }
         favsFetchBlocked.setFalse()
+    }
+
+    func getLocation(_ profile: Profile) -> CLLocationCoordinate2D {
+        let latLong = profile.location.toArrayComma
+        let lat = Double(latLong[0]) ?? 0.0
+        let long = Double(latLong[1]) ?? 0.0
+        return CLLocationCoordinate2D(latitude: lat, longitude: long)
     }
 }
