@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum TabItem: String, CaseIterable {
-    case movies = "Movies"
+    case movies = "Movies TopRated"
     case map = "Map"
     case match = "Match"
     case me = "Me"
