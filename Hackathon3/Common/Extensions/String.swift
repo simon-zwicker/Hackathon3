@@ -8,6 +8,6 @@
 extension String {
 
     var toArrayComma: [String] {
-        self.components(separatedBy: ",")
+        self.components(separatedBy: ",").compactMap({ $0.trimmingCharacters(in: .whitespaces) })
     }
 }

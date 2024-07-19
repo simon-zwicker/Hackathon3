@@ -16,15 +16,26 @@ struct MapScreen: View {
 
     var body: some View {
         ZStack {
-            Map()
-                .mapControls {
-                    MapUserLocationButton()
-                    MapCompass()
+            Map {
+                ForEach(profilesModel.profiles.filter({ $0.id != profilesModel.userProfile?.id }), id: \.id) { profile in
+                    Marker(profile.name, coordinate: getLocation(profile))
                 }
+            }
+            .mapControls {
+                MapUserLocationButton()
+                MapCompass()
+            }
 
         }
         .onAppear {
             locationManager.requestAuth()
         }
+    }
+
+    private func getLocation(_ profile: Profile) -> CLLocationCoordinate2D {
+        let latLong = profile.location.toArrayComma
+        let lat = Double(latLong[0]) ?? 0.0
+        let long = Double(latLong[1]) ?? 0.0
+        return CLLocationCoordinate2D(latitude: lat, longitude: long)
     }
 }

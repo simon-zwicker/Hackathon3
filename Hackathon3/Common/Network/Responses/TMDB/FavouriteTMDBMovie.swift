@@ -8,6 +8,12 @@
 import Foundation
 
 struct FavouriteTMDBMovie: Codable {
-    var id: Int
-    var title: Int
+    let id: Int
+    let title: String
+    let imdbID: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, title
+        case imdbID = "imdb_id"
+    }
 }
