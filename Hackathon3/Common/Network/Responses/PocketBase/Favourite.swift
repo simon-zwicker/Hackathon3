@@ -78,4 +78,5 @@ extension Favourite {
             return try? Int(strID, format: .number)
         })
     }
+    
 }

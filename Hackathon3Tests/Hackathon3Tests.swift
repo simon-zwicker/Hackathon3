@@ -54,6 +54,11 @@ final class Hackathon3Tests: XCTestCase {
     func testPatchFavourites() async throws {
         let res = try await Network.request(Favourite.self, environment: .pock, endpoint: Pockethost.patchFavourite("vsdoctzkc1zljn0", "562", "h2k556igj37sr2a"))
     }
+    
+    func testSingleMovieFetch() async throws {
+        let res = try await Network.request(FavouriteTMDBMovie.self, environment: .tmdb, endpoint: TmDB.specificMovie(519182))
+        print(res)
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

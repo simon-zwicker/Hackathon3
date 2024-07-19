@@ -53,6 +53,7 @@
 		A6F070F52C49DE8D0098B1C3 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070F42C49DE8D0098B1C3 /* Gender.swift */; };
 		A6F070F72C49EC740098B1C3 /* MResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070F62C49EC740098B1C3 /* MResult.swift */; };
 		A6F070F92C49EDBC0098B1C3 /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070F82C49EDBC0098B1C3 /* StorageError.swift */; };
+		A6F070FC2C4A020C0098B1C3 /* FavouriteTMDBMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F070FB2C4A020C0098B1C3 /* FavouriteTMDBMovie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		A6F070F42C49DE8D0098B1C3 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		A6F070F62C49EC740098B1C3 /* MResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MResult.swift; sourceTree = "<group>"; };
 		A6F070F82C49EDBC0098B1C3 /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
+		A6F070FB2C4A020C0098B1C3 /* FavouriteTMDBMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteTMDBMovie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +256,7 @@
 			children = (
 				4FBE7A0F2C4911A800D2FF5B /* TMDBMovies.swift */,
 				4FBE7A112C4911BA00D2FF5B /* TMDBMovie.swift */,
+				A6F070FB2C4A020C0098B1C3 /* FavouriteTMDBMovie.swift */,
 			);
 			path = TMDB;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				A6F070ED2C49D3F20098B1C3 /* UDKey.swift in Sources */,
 				4FBE79F82C47FD6800D2FF5B /* ErrorObj.swift in Sources */,
 				4FBE7A322C495E3100D2FF5B /* MatchMovieModel.swift in Sources */,
+				A6F070FC2C4A020C0098B1C3 /* FavouriteTMDBMovie.swift in Sources */,
 				4FBE7A102C4911A800D2FF5B /* TMDBMovies.swift in Sources */,
 				4FBE7A0C2C490E1D00D2FF5B /* TmDB.swift in Sources */,
 				A6F070CE2C49835B0098B1C3 /* Genres.swift in Sources */,

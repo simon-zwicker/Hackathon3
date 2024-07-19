@@ -58,10 +58,7 @@ struct FavList: View {
             
             do {
                 for id in ids {
-                    let res = try await Network.request(TMDBMovie.self, environment: .tmdb, endpoint: TmDB.specificMovie(id))
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                        favs.append(res)
-                    }
+                    let res = try await Network.request(FavouriteTMDBMovie.self, environment: .tmdb, endpoint: TmDB.specificMovie(id))
                     print("\n\n\n\n\n\n\n\nres\n\(res)")
                     
                 }
