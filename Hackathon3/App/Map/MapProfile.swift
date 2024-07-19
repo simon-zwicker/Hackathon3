@@ -10,9 +10,22 @@ import SwiftUI
 struct MapProfile: View {
     let profile: Profile
     @State var favMovies: [FavouriteTMDBMovie] = []
+    @State var disabled: Bool = false
     var body: some View {
         VStack {
             MeImage(name: profile.name, color: .blue)
+            if !disabled {
+                Button {
+                    withAnimation {
+                        disabled.setTrue()
+                    }
+                } label: {
+                    Text("Date anfragen")
+                }
+            }
+            else {
+                Text("Date wurde an XYZ angefragt")
+            }
             List {
                 Section(header: Text("Favoriten")) {
                     ForEach(favMovies, id: \.id) { movie in
