@@ -12,10 +12,12 @@ struct FavouriteTMDBMovie: Codable {
     let title: String
     let imdbID: String
     let posterPath: String
+    let voteAverage: Double
 
     enum CodingKeys: String, CodingKey {
         case id, title
         case imdbID = "imdb_id"
         case posterPath = "poster_path"
+        case voteAverage = "vote_average"
     }
 }
