@@ -10,16 +10,17 @@ import SwiftUI
 import Kingfisher
 
 struct MovieDetail: View {
-    let movie: TMDBMovie
-    @Binding var liked: Bool
+    var movie: TMDBMovie? = nil
+    var favMovie: FavouriteTMDBMovie? = nil
+    var liked: Binding<Bool>?
     @State var omdb: OMDBMovie? = nil
-    @Binding var likeDisabled: Bool
-    var toggleLike: () -> Void
+    var likeDisabled: Binding<Bool>?
+    var toggleLike: (() -> Void)?
     
     var body: some View {
         ScrollView {
             LazyVStack {
-                if let url = URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)") {
+                if let url = URL(string: "https://image.tmdb.org/t/p/w500\(movie.isNil ? (favMovie.isNil ? "" : favMovie?.posterPath ?? "") : movie?.posterPath ?? "")") {
                     KFImage(url)
                         .placeholder { _ in
                             ProgressView().progressViewStyle(.circular)
@@ -29,15 +30,16 @@ struct MovieDetail: View {
                         .aspectRatio(contentMode: .fill)
                         .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
                     .overlay(alignment: .bottomTrailing) {
-                        Image(systemName: "heart\(liked ? ".fill" : "")")
-                            .foregroundStyle(.ultraThickMaterial)
-                            .padding(20)
-                            .font(.title)
-                            .button {
-                                toggleLike()
-                            }
-                            .disabled(likeDisabled)
-                        
+                        if let liked, let likeDisabled, let toggleLike {
+                            Image(systemName: "heart\(liked.wrappedValue ? ".fill" : "")")
+                                .foregroundStyle(.ultraThickMaterial)
+                                .padding(20)
+                                .font(.title)
+                                .button {
+                                    toggleLike()
+                                }
+                                .disabled(likeDisabled.wrappedValue)
+                        }
                     }
                 } else {
                     LoadFailedView(error: "URL invalid")
@@ -52,7 +54,7 @@ struct MovieDetail: View {
                                         RoundedRectangle(cornerRadius: 5)
                                             .stroke()
                                     }
-                                MovieInformation(title: movie.title, plot: plot, actors: actors, awards: awards)
+                                MovieInformation(title: movie.isNil ? (favMovie.isNil ? "Failed" : favMovie?.title ?? "Failed") : movie?.title ?? "Failed", plot: plot, actors: actors, awards: awards)
                             }
                     } else {
                         VStack {
@@ -63,7 +65,11 @@ struct MovieDetail: View {
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke()
                                 }
-                            MovieInformation(title: movie.title, plot: movie.overview, actors: "", awards: "")
+                            if let movie {
+                                MovieInformation(title: movie.title, plot: movie.overview, actors: "", awards: "")
+                            } else if let favMovie {
+                                MovieInformation(title: favMovie.title, plot: "Unavailable", actors: "", awards: "")
+                            }
                         }
                     }
                 }
@@ -71,7 +77,11 @@ struct MovieDetail: View {
             }
         }
         .task {
-            let res = try? await Network.request(OMDBMovie.self, environment: .ombd, endpoint: OMDB.byTitle(movie.originalTitle))
+            var title = ""
+            if let movie { title = movie.originalTitle }
+            else if let favMovie { title = favMovie.title }
+            else { return }
+            let res = try? await Network.request(OMDBMovie.self, environment: .ombd, endpoint: OMDB.byTitle(title))
             omdb = res
         }
     }

@@ -17,9 +17,23 @@ struct MeScreen: View {
                 MeImage(name: profile.name)
 
                 VStack(alignment: .leading) {
-                    Text("Meine Favoriten")
-                        .font(.Bold.heading1)
-                        .padding()
+                    HStack {
+                        Text("Meine Favoriten")
+                            .font(.Bold.heading1)
+                            .padding()
+                        Image(systemName: "arrow.counterclockwise")
+                            .button {
+                                Task {
+                                    await profilesModel.fetchFavs()
+                                }
+                            }
+                            .disabled(profilesModel.favsFetchBlocked)
+                    }
+                    List {
+                        ForEach(profilesModel.favs, id: \.id) { movie in
+                            FavouritesRow(movie: movie)
+                        }
+                    }
                 }
             } else {
                 ContentUnavailableView(
