@@ -33,6 +33,7 @@ struct LoadingScreen: View {
                 await moviesModel.fetch()
                 await matchModel.fetch()
                 await profilesModel.fetch()
+                await profilesModel.fetchFavs()
                 self.isLoading.setFalse()
             }
         }
