@@ -11,18 +11,23 @@ import SwiftChameleon
 struct MeImage: View {
 
     @State var name: String
+    var size: CGFloat = 80.0
+    var mapAnnotation: Bool = false
+    var color: Color = .profile
 
     var body: some View {
         VStack {
-            Text(name)
-                .font(.Regular.title2)
+            if !mapAnnotation {
+                Text(name)
+                    .font(.Regular.title2)
+            }
 
             Circle()
-                .fill(.profile.gradient)
-                .frame(width: 80, height: 80)
+                .fill(color.gradient)
+                .frame(width: size, height: size)
                 .overlay {
                     Text("\(name.first?.description ?? "")")
-                        .font(.Bold.extraLarge)
+                        .font(mapAnnotation ? .Bold.regular: .Bold.extraLarge)
                         .foregroundStyle(.white.opacity(0.6))
                 }
         }
