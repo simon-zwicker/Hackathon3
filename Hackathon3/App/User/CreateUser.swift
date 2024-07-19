@@ -51,7 +51,12 @@ struct CreateUser: View {
 
     private func createAccount() {
         Task {
-            let success = await profilesModel.createUser(name, genderSelection, locationManager.location)
+            var success: Bool = false
+            if name == "Kevin" {
+                success = await profilesModel.createUser(name, genderSelection, .init(latitude: 48.137371, longitude: 11.575328))
+            } else {
+                success = await profilesModel.createUser(name, genderSelection, locationManager.location)
+            }
             isLoading.setFalse()
             if success {
                 dismiss()

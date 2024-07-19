@@ -14,14 +14,12 @@ struct MapScreen: View {
     @Environment(LocationManager.self) private var locationManager
     private var locationUpdated: Bool = false
     @State var choosedProfile: Profile?
-    @State var radius: Double = 5_000
-    var position: MapCameraPosition {
-        showLocation()
-    }
+    @State var radius: Double = 2
+    @State var position: MapCameraPosition = .automatic
 
     var body: some View {
         ZStack {
-            Map(initialPosition: position) {
+            Map(position: $position) {
                 ForEach(profilesModel.profiles.filter({ $0.id != profilesModel.userProfile?.id }), id: \.id) { profile in
 
                     Annotation(profile.name, coordinate: getLocation(profile)) {
@@ -35,7 +33,7 @@ struct MapScreen: View {
                         MeImage(name: user.name, size: 30.0, mapAnnotation: true)
                     }
 
-                    MapCircle(center: getLocation(user), radius: CLLocationDistance(radius))
+                    MapCircle(center: getLocation(user), radius: CLLocationDistance(radius * 1000))
                             .foregroundStyle(.blue.opacity(0.4))
                             .stroke(.blue, lineWidth: 1.0)
                             .mapOverlayLevel(level: .aboveLabels)
@@ -44,9 +42,24 @@ struct MapScreen: View {
             .mapControls {
                 MapCompass()
             }
+
+            VStack {
+                Spacer()
+                VStack(alignment: .leading) {
+                    Text("Radius einstellen: \(radius.string(0)) km")
+                        .font(.Bold.regular)
+                    Slider(value: $radius, in: 2...200, step: 2.0)
+                }
+                .padding(.horizontal)
+                .frame(maxWidth: .infinity, minHeight: 80.0, maxHeight: 80.0)
+                .background(.white.opacity(0.95))
+                .clipShape(.rect(cornerRadius: 20.0))
+                .padding()
+            }
         }
         .onAppear {
             locationManager.requestAuth()
+            showLocation()
         }
         .sheet(item: $choosedProfile) {
             self.choosedProfile = nil
@@ -57,6 +70,9 @@ struct MapScreen: View {
             .padding()
             .presentationDetents([.medium])
         }
+        .onChange(of: radius) {
+            showLocation()
+        }
     }
 
     private func getLocation(_ profile: Profile) -> CLLocationCoordinate2D {
@@ -66,9 +82,9 @@ struct MapScreen: View {
         return CLLocationCoordinate2D(latitude: lat, longitude: long)
     }
 
-    private func showLocation() -> MapCameraPosition {
-        guard let profile = profilesModel.userProfile else { return MapCameraPosition.automatic }
+    private func showLocation() {
+        guard let profile = profilesModel.userProfile else { return }
         let coord = getLocation(profile)
-        return MapCameraPosition.camera(.init(centerCoordinate: coord, distance: (radius * 10)))
+        position = MapCameraPosition.camera(.init(centerCoordinate: coord, distance: (radius * 10000)))
     }
 }
