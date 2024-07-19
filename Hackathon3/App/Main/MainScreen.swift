@@ -29,5 +29,12 @@ struct MainScreen: View {
                 .interactiveDismissDisabled()
                 .presentationDetents([.height(450.0)])
         }
+        .onChange(of: selected) {
+            if selected == .me {
+                Task {
+                    await profilesModel.fetchFavs()
+                }
+            }
+        }
     }
 }

@@ -62,7 +62,7 @@ class MatchMovieModel {
             self.fetchedMovies.append(contentsOf: data.results)
             self.displayingMovies = data.results.filter({ !getLocalFav($0.id) })
             self.hasNextPage = data.page < data.totalPages
-            self.pageUD = data.page
+            self.pageUD = data.page + 1
             self.isLoading.setFalse()
         } catch {
             print("Error on getting Movies: \(error.localizedDescription)")
